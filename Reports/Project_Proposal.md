@@ -98,7 +98,7 @@ The SEL-351S relay testing system will be designed to operate under the followin
 8. Design and testing shall prevent hazards or disruption to students, faculty, laboratory equipment, and nearby electrical systems. \[4\], \[6\]
 9. The test system shall conform to additional client, faculty, and campus requirements established before laboratory use.
 
-**Survey of Existing Solutions**
+## Survey of Existing Solutions
 
 Research existing solutions, whether in literature, on the market, or within the industry. Present these findings in a coherent, organized manner. Remember to cite all information that is not common knowledge.
 
