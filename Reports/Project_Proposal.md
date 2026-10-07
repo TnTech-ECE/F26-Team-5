@@ -5,9 +5,9 @@
 Tennessee Technological University
 <div align="left">
 
-**Project Proposal**
 
-**Introduction**
+
+## Introduction
 
 The introduction must be the opening section of the proposal. It acts as the "elevator pitch" of the project, briefly introducing the objective, its importance, and the proposed solution. Because readers may only read this section, it should effectively capture their attention and encourage them to read further.
 
