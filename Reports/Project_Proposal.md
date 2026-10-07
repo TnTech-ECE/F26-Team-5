@@ -1,4 +1,4 @@
-# <div align="center"> SEL 351S Protective Relay Training Project Proposal <br>
+# <div align="center"> SEL 351S Protective Relay Training Project Proposal
 #### <div align="center"> Team 5
 #### <div align="center"> John Pacek, Alexander Bussell, Hadyn Simmons, Travis Mehaffy, Maddux Stone
 <div align="center"> Department of Electrical and Computer Engineering <br>
@@ -324,11 +324,11 @@ All sources used in the project proposal that are not common knowledge must be c
 
 \[2\] Schweitzer Engineering Laboratories, Inc., _SEL-351S Relay Instruction Manual_, Date Code 20190809, 2019.
 
-**Personnel and Team Skills:**
+**Personnel and Team Skills:** NA
 
-**Timeline:**
+**Timeline:** NA
 
-**Specific Implications:**
+**Specific Implications:** NA
 
 \[1\] Schweitzer Engineering Laboratories, Inc., _SEL-351S Relay Instruction Manual_, Date Code 20190809, 2019.
 
