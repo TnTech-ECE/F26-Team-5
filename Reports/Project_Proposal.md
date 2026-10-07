@@ -1,5 +1,4 @@
 # <div align="center"> SEL 351S Protective Relay Training Project Proposal
-#### <div align="center"> Team 5
 #### <div align="center"> John Pacek, Alexander Bussell, Hadyn Simmons, Travis Mehaffy, Maddux Stone
 <div align="center"> Department of Electrical and Computer Engineering <br>
 Tennessee Technological University
