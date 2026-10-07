@@ -201,7 +201,7 @@ The project supervisor and subject-matter expert will be Daniel Wray. As a Produ
 Dr. Johnson will provide academic oversight, establish course requirements, review project progress, and evaluate the completed project.
 
 ## Timeline
-<img src= "/Documents/Gantt Chartpng" width="3200" height="900">
+<img src= "/Documents/Gantt Chart.png" width="3200" height="900">
 
 
 
