@@ -1,5 +1,5 @@
 # <div align="center"> SEL 351S Protective Relay Training Project Proposal
-### <div align="center"> Team 5
+#### <div align="center"> Team 5
 #### <div align="center"> John Pacek, Alexander Bussell, Hadyn Simmons, Travis Mehaffy, Maddux Stone
 <div align="center"> Department of Electrical and Computer Engineering <br>
 Tennessee Technological University
@@ -35,7 +35,7 @@ This proposal will cover the following:
 - References – Listing supporting technical and professional sources.
 - Team Contributions – Identifying each member's responsibilities.
 
-**Formulating the Problem**
+## Formulating the Problem
 
 Most electrical engineering students graduate with little to no practical experience. This project will give students experience working with relays used in industry by creating a piece of lab equipment for use here at Tennessee Tech. The project will simulate real-world industry application thanks to input from Mr. Daniel Wray, who will provide the necessary information on how relays are used in power systems. Dr. Su will represent the ECE department at Tennessee Tech and advise the group on the learning outcomes the device needs to provide students, as well as help in constructing the device for ease of use and safety.
 
@@ -43,7 +43,7 @@ The project will feature three main systems. First, it will need a source that c
 
 While SEL does make testing equipment which can be used to simulate current and read the output from a relay such as the SEL-4000 \[1\]. These devices are too expensive to be practical for use in a student laboratory. By creating a device that can test the relay, the need for the SEL-4000 \[1\] can be eliminated. Based on the current prices of the SEL-4000 \[1\] and the SEL-351S \[2\], the overall cost could be cut by almost two-thirds since only the SEL-351S will be needed.
 
-**Background**
+## Background
 
 Electrical power systems require protective devices to detect abnormal operating conditions and isolate faults before they cause unnecessary equipment damage or create additional hazards. Protective relays perform an important role in this process by monitoring electrical quantities and determining when operating conditions require protection. When the conditions defined by the relay are satisfied, the relay can issue a trip command to a circuit breaker, allowing the affected portion of the power system to be isolated \[1\].
 
@@ -61,7 +61,7 @@ Testing these functions requires the relay to experience electrical and control 
 
 The completed system is intended to combine these functions into a reusable educational platform for Tennessee Technological University. Rather than requiring students to interact with an energized distribution system or depend entirely on professional relay-testing equipment, the training system will provide a controlled environment for studying relay configuration, overcurrent protection, circuit-breaker control, automatic reclosing, and protective-relay testing. Test results will allow expected and measured relay behavior to be compared so that students can observe not only whether the relay operates, but also whether it operates according to its programmed protection settings.
 
-**Specifications and Constraints**
+## Specifications and Constraints
 
 Specifications and constraints define the system's requirements. They can be positive (do this) or negative (don't do that). They can be mandatory (shall or must) or optional (may). They can cover performance, accuracy, interfaces, or limitations. Regardless of their origin, they must be unambiguous and impose measurable requirements.
 
