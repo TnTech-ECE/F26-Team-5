@@ -351,7 +351,7 @@ All sources used in the project proposal that are not common knowledge must be c
 
 \[7\] U.S. Environmental Protection Agency, "Electronics donation and recycling." Accessed: Oct. 7, 2026. \[Online\]. Available: <https://www.epa.gov/recycle/electronics-donation-and-recycling>
 
-**Statement of Contributions**
+## Statement of Contributions
 
 **John:** John was responsible for the Personnel and Team Skills, Measures of Success, Resources, and Budget sections of the project proposal. He facilitated document section integration and was responsible for document review. He also contributed to researching relay testing, required project resources, and estimated project costs.
 
