@@ -8,9 +8,6 @@ Tennessee Technological University
 
 ## Introduction
 
-The introduction must be the opening section of the proposal. It acts as the "elevator pitch" of the project, briefly introducing the objective, its importance, and the proposed solution. Because readers may only read this section, it should effectively capture their attention and encourage them to read further.
-
-Toward the end of the introduction, include a subsection that outlines what the proposal will cover. This helps set reader expectations for the ensuing sections.
 
 Electrical power systems are essential for infrastructure in our modern-day society, and the use of protective relays plays a critical role in limiting damage when electrical faults do occur. Reliable protection against these electrical faults requires extensive testing that verifies that the relay operates as it is supposed to based on its settings, logic, and overall role in the power system \[1\].
 
@@ -62,11 +59,7 @@ The completed system is intended to combine these functions into a reusable educ
 
 ## Specifications and Constraints
 
-Specifications and constraints define the system's requirements. They can be positive (do this) or negative (don't do that). They can be mandatory (shall or must) or optional (may). They can cover performance, accuracy, interfaces, or limitations. Regardless of their origin, they must be unambiguous and impose measurable requirements.
-
 **Specifications**
-
-Specifications are requirements imposed by **stakeholders** to meet their needs. If a specification seems unattainable, it is necessary to discuss and negotiate with the stakeholders.
 
 The project shall provide a test system for evaluating an SEL-351S legacy protective relay. The following specifications are derived from the stakeholder-provided project instructions.
 
@@ -83,8 +76,6 @@ The project shall provide a test system for evaluating an SEL-351S legacy protec
 
 **Constraints**
 
-Constraints often stem from governing bodies, standards organizations, and broader considerations beyond the requirements set by stakeholders.
-
 The SEL-351S relay testing system will be designed to operate under the following safety and regulatory requirements:
 
 1. The material cost for the SEL-351S relay test system shall not exceed the approved project budget given by Tennessee Technological University.
@@ -98,8 +89,6 @@ The SEL-351S relay testing system will be designed to operate under the followin
 9. The test system shall conform to additional client, faculty, and campus requirements established before laboratory use.
 
 ## Survey of Existing Solutions
-
-Research existing solutions, whether in literature, on the market, or within the industry. Present these findings in a coherent, organized manner. Remember to cite all information that is not common knowledge.
 
 Existing approaches to protective-relay education and testing include manufacturer training, educational laboratory systems, circuit breaker simulators, professional relay-testing equipment, and power-system simulation software. The solutions reviewed below address relay familiarity, practical testing experience, and distribution-system coordination.
 
@@ -218,8 +207,6 @@ The system is also intended to provide value beyond its initial development. Com
 
 ## Broader Implications, Ethics, and Responsibility as Engineers
 
-Consider the project's broader impacts in global, economic, environmental, and societal contexts. Identify potential negative impacts and propose mitigation strategies. Detail the ethical considerations and responsibilities each team member bears as an engineer.
-
 The SEL-351S relay test system has implications across global, economic, environmental, and societal contexts. By providing a repeatable method for evaluating protective relay operations, the project can support engineering education and confidence in power-system protection. Responsible implementation requires recognizing potential negative impacts and addressing them through safe design, accurate testing, and transparent reporting. \[5\], \[6\]
 
 1. **Global and Economic Impact**
@@ -243,7 +230,6 @@ Each team member will prioritize safety responsibility and honesty throughout th
 
 ## References
 
-All sources used in the project proposal that are not common knowledge must be cited. Multiple references are required.
 
 **Introduction:**
 
