@@ -57,7 +57,7 @@ Grounding, electrical isolation, output protection, and other safety provisions 
 <img src= "/Documentation/Inserts/Midterm Design Hardware Block Diagram.png" width="3200" height="900">
 
 ## Operational Flow Chart
-*(Placeholder for Operational Flow Chart)*
+<img src= "/Documentation/Inserts/Midterm Design Operational Flowchart Diagram.png" width="3200" height="900">
 
 ## Atomic Subsystem Specifications
 
@@ -291,7 +291,7 @@ Alexander will lead the design of the voltage/current amplification subsystem. F
 All team members will participate in system integration, troubleshooting, and final validation. Each subsystem lead will document the subsystem's functional requirements, inputs, outputs, component requirements, and design constraints. The team will review the combined design to ensure that the individual subsystems operate together safely and satisfy the project's core requirements. Subsystem leads will remain responsible for their respective designs while incorporating feedback and assistance from the rest of the team.
 
 ## Timeline
-*(Placeholder for Timeline)*
+<img src= "/Documentation/Inserts/Midterm Design Gantt Chart.png" width="3200" height="900">
 
 ## References
 
