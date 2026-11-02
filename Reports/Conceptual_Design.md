@@ -54,7 +54,7 @@ The initial scope excludes voltage injection and a dedicated neutral-current cha
 Grounding, electrical isolation, output protection, and other safety provisions remain unresolved design tasks. Detailed design will establish the relationships between control grounds, amplifier returns, relay connections, and protective earth, along with appropriate fault protection and output-disabling measures. These provisions must be resolved and verified before the complete test set is energized and connected to the relay.
 
 ## Hardware Block Diagram
-*(Placeholder for Hardware Block Diagram)*
+<img src= "/Documentation/Inserts/Midterm Design Hardware Block Diagram.png" width="3200" height="900">
 
 ## Operational Flow Chart
 *(Placeholder for Operational Flow Chart)*
