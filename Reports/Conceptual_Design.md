@@ -302,8 +302,11 @@ All sources utilized in the conceptual design that are not considered common kno
 
 ### Introduction:
 [1] Schweitzer Engineering Laboratories, "SEL-351S Protection System." [Online]. Available: https://selinc.com/products/351S/
+
 [2] OMICRON electronics, "CMC 356-Universal Relay Test Set and Commissioning Tool." [Online]. Available: https://www.omicronenergy.com/en/products/cmc-356/
+
 [3] Texas Instruments, "DAC80504-16-Bit, 4-Channel, SPI Voltage-Output DAC." [Online]. Available: https://www.ti.com/product/DAC80504
+
 [4] Schweitzer Engineering Laboratories, "SEL-351S Protection System Data Sheet." [Online]. Available: https://selinc.com/api/download/5514/?lang=en
 
 ### Restating the Fully Formulated Problem:
