@@ -311,7 +311,9 @@ All sources utilized in the conceptual design that are not considered common kno
 
 ### Restating the Fully Formulated Problem:
 [1] International Electrotechnical Commission, "Safety requirements for electrical equipment for measurement, control, and laboratory use Part 1: General requirements," IEC 61010-1:2010+AMD1:2016. Accessed: Oct. 7, 2026. [Online]. Available: https://webstore.iec.ch/en/publication/59769
+
 [2] Occupational Safety and Health Administration, "General," 29 CFR 1910.303. Accessed: Oct. 7, 2026. [Online]. Available: https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.303
+
 [3] Tennessee Technological University, "Lab safety." Accessed: Oct. 7, 2026. [Online]. Available: https://www.tntech.edu/safety/lab-safety.php
 
 ### Comparative Analysis of Potential Solutions:
@@ -331,9 +333,13 @@ N/A
 
 ### Ethical, Professional, and Standards Considerations:
 [1] Schweitzer Engineering Laboratories, "SEL-351S Protection System." [Online]. Available: https://seline.com/products/351S/
+
 [2] International Electrotechnical Commission, IEC 61010-1: Safety Requirements for Electrical Equipment for Measurement, Control, and Laboratory Use-Part 1: General Requirements. [Online]. Available: https://webstore.iec.ch/
+
 [3] Institute of Electrical and Electronics Engineers, IEEE Standards Collection: Power System Protection and Relaying. [Online]. Available: https://standards.ieee.org/
+
 [4] International Electrotechnical Commission, IEC Standards Collection: Measuring Relays, Protection Equipment, and Electromagnetic Compatibility. [Online]. Available: https://webstore.iec.ch/
+
 [5] National Fire Protection Association, NFPA 70: National Electrical Code. [Online]. Available: https://www.nfpa.org/
 
 ### Resources:
@@ -341,10 +347,15 @@ N/A
 
 ### Budget:
 [1] MEAN WELL USA Inc., "RSP-500 Series AC/DC Converters," DigiKey. [Online]. Available: https://www.digikey.com/en/products/base-product/mean-well-usa-inc/1866/RSP-500/461124. Accessed: Oct. 30, 2026.
+
 [2] Hammond Manufacturing, "RMCV9038BK1 Instrument Enclosure," DigiKey. [Online]. Available: https://www.digikey.com/en/products/detail/hammond-manufacturing/RMCV9038BK1/461284. Accessed: Oct. 30, 2026.
+
 [3] STMicroelectronics, "NUCLEO-G474RE Development Board," DigiKey. [Online]. Available: https://www.digikey.com/en/products/detail/stmicroelectronics/NUCLEO-G474RE/10231585. Accessed: Oct. 30, 2026.
+
 [4] Texas Instruments, "DAC80504RTER 16-Bit, Four-Channel Digital-to-Analog Converter." [Online]. Available: https://www.ti.com/product/DAC80504/part-details/DAC80504RTER. Accessed: Oct. 30, 2026.
+
 [5] Texas Instruments, "OPA541AP Power Operational Amplifier," DigiKey. [Online]. Available: https://www.digikey.com/en/products/detail/texas-instruments/OPA541AP/251157. Accessed: Oct. 30, 2026.
+
 [6] Ohmite Manufacturing, "HS150 IR J, 1 $\Omega$, 150 W Chassis Mount Resistor," DigiKey. [Online]. Available: https://www.digikey.com/en/products/detail/ohmite/HS150-1R-J/5307167. Accessed: Oct. 30, 2026.
 
 ### Division of Labor:
