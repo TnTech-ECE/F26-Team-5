@@ -348,3 +348,5 @@ Each team member will prioritize safety responsibility and honesty throughout th
 **Travis:** Travis was responsible for the introductions, project constraints, and the Broader Implications, Ethics, and Responsibility as Engineer sections. He also contributed to researching protective relays, developing the project's scope, and surveying the existing solutions for the project.
 
 **Alexander:** Alexander was responsible for formulating the problem. He also contributed research on how a current source could be implemented.
+
+im the goat
