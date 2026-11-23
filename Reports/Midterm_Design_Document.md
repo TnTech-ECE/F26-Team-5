@@ -252,101 +252,105 @@ Each team member will prioritize safety responsibility and honesty throughout th
 
 ## References
 
+### Introduction:
 
-Introduction:
+[1] K. Zimmerman and D. Costello, "Lessons learned from commissioning protective relaying systems," Schweitzer Engineering Laboratories, technical paper. Accessed: Oct. 6, 2026. [Online]. Available: [https://cdn.selinc.com/assets/Literature/Publications/Technical%20Papers/6360_LessonsLearned_KZ-DC_20120120_Web.pdf](https://cdn.selinc.com/assets/Literature/Publications/Technical%20Papers/6360_LessonsLearned_KZ-DC_20120120_Web.pdf)
 
-[1] K. Zimmerman and D. Costello, "Lessons learned from commissioning protective relaying systems," Schweitzer Engineering Laboratories, technical paper. Accessed: Oct. 6, 2026. [Online]. Available: https://cdn.selinc.com/assets/Literature/Publications/Technical%20Papers/6360_LessonsLearned_KZ-DC_20120120_Web.pdf
+[2] Schweitzer Engineering Laboratories, "SEL-351S protection system," data sheet. Accessed: Oct. 6, 2026. [Online]. Available: [SEL-351S Protection System Data Sheet](https://selinc.com/api/download/5514)
 
-[2] Schweitzer Engineering Laboratories, "SEL-351S protection system," data sheet. Accessed: Oct. 6, 2026. [Online]. Available: SEL-351S Protection System Data Sheet
+### Background:
 
-Background:
+[1] Schweitzer Engineering Laboratories, Inc., *SEL-351S Relay Instruction Manual*, Date Code 20190809, 2019.
 
-[1] Schweitzer Engineering Laboratories, Inc., SEL-351S Relay Instruction Manual, Date Code 20190809, 2019.
-
-[2] Schweitzer Engineering Laboratories, Inc., SEL-351S Protection System, Data Sheet. Pullman, WA, USA. [Online]. Available: SEL-351S Protection System Data Sheet. [Accessed: Oct. 4, 2026].
+[2] Schweitzer Engineering Laboratories, Inc., *SEL-351S Protection System*, Data Sheet. Pullman, WA, USA. [Online]. Available: [SEL-351S Protection System Data Sheet](https://selinc.com/api/download/5514/?lang=en). [Accessed: Oct. 4, 2026].
 
 [3] D. Costello, K. Behrendt, and A. Amberg, "Enabling instantaneous tripping during a Hot Line Tag condition with the SEL-351S, SEL-351R, and SEL-651R relays," Schweitzer Engineering Laboratories, Application Guide AG2009-12, rev. Jan. 15, 2014.
 
-Specifications and Constraints:
+### Specifications and Constraints:
 
 [1] D. Costello, K. Behrendt, and A. Amberg, "Enabling instantaneous tripping during a Hot Line Tag condition with the SEL-351S, SEL-351R, and SEL-651R relays," Schweitzer Engineering Laboratories, Application Guide AG2009-12, rev. Jan. 15, 2014.
 
-[2] Schweitzer Engineering Laboratories, "SEL-351S protection system," data sheet. Accessed: Oct. 1, 2026. [Online]. Available: SEL-351S Protection System Data Sheet
+[2] Schweitzer Engineering Laboratories, "SEL-351S protection system," data sheet. Accessed: Oct. 1, 2026. [Online]. Available: [SEL-351S Protection System Data Sheet](https://selinc.com/api/download/5514)
 
-[3] International Electrotechnical Commission, "Safety requirements for electrical equipment for measurement, control, and laboratory use—Part 1: General requirements," IEC 61010-1:2010+AMD1:2016. Accessed: Oct. 7, 2026. [Online]. Available: https://webstore.iec.ch/en/publication/59769
+[3] International Electrotechnical Commission, "Safety requirements for electrical equipment for measurement, control, and laboratory use—Part 1: General requirements," IEC 61010-1:2010+AMD1:2016. Accessed: Oct. 7, 2026. [Online]. Available: [IEC 61010-1:2010+AMD1:2016 CSV | IEC](https://webstore.iec.ch/en/publication/59769)
 
-[4] Tennessee Technological University, "Lab safety." Accessed: Oct. 7, 2026. [Online]. Available: https://www.tntech.edu/safety/lab-safety.php
+[4] Tennessee Technological University, "Lab safety." Accessed: Oct. 7, 2026. [Online]. Available: [Environmental Health & Safety - Lab Safety](https://www.tntech.edu/safety/lab-safety.php)
 
-[5] Schweitzer Engineering Laboratories, "SEL-351S protection system," documentation. Accessed: Oct. 7, 2026. [Online]. Available: https://selinc.com/products/351S/docs/
+[5] Schweitzer Engineering Laboratories, "SEL-351S protection system," documentation. Accessed: Oct. 7, 2026. [Online]. Available: [SEL-351S Protection System - Documentation | Schweitzer Engineering Laboratories](https://selinc.com/products/351s/docs/)
 
-[6] Occupational Safety and Health Administration, "General," 29 CFR 1910.303. Accessed: Oct. 7, 2026. [Online]. Available: https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.303
+[6] Occupational Safety and Health Administration, "General," 29 CFR 1910.303. Accessed: Oct. 7, 2026. [Online]. Available: [1910.303 - General. | Occupational Safety and Health Administration](https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.303)
 
-Survey of Existing Solutions:
+### Survey of Existing Solutions:
 
-[1] OMICRON electronics, "CMC 500." Accessed: Sep. 30, 2026. [Online]. Available: CMC 500 - OMICRON electronics GmbH
+[1] OMICRON electronics, "CMC 500." Accessed: Sep. 30, 2026. [Online]. Available: [CMC 500 - OMICRON electronics GmbH](https://www.omicronenergy.com/en/products/cmc-500)
 
-[2] OMICRON electronics, "Test Universe." Accessed: Nov. 19, 2026. [Online]. Available: Test Universe - OMICRON electronics GmbH
+[2] OMICRON electronics, "Test Universe." Accessed: Nov. 19, 2026. [Online]. Available: [Test Universe - OMICRON electronics GmbH](https://www.omicronenergy.com/en/products/test-universe)
 
 [3] Eric Foster, "CMC-500 //OMI06920000052," email correspondence to Tennessee Technological University Capstone Team 5, Oct. 2, 2026.
 
-[4] Barrington Consultants, Inc., "CBS." Accessed: Sep. 30, 2026. [Online]. Available: Barrington Consultants, Inc. | CBS
+[4] Barrington Consultants, Inc., "CBS." Accessed: Sep. 30, 2026. [Online]. Available: [Barrington Consultants, Inc. | CBS](https://www.barringtoninc.com/cbs.htm)
 
-[5] PONOVO, "PSS01 circuit breaker simulation device." Accessed: Sep. 30, 2026. [Online]. Available: PSS01 Circuit Breaker Simulation Device Manufacturers, Suppliers, Factory, Company - PONOVO
+[5] PONOVO, "PSS01 circuit breaker simulation device." Accessed: Sep. 30, 2026. [Online]. Available: [PSS01 Circuit Breaker Simulation Device Manufacturers, Suppliers, Factory, Company - PONOVO](https://www.ponovo.net/relay-and-protection-testing/optional-accessories/pss01-circuit-breaker-simulator.html)
 
-[6] A. Saran, P. Kankanala, A. K. Srivastava, and N. N. Schulz, "Designing and testing protective overcurrent relay using real time digital simulation," presented at the Grand Challenges in Modeling & Simulation, Summer Simulation Conference (SummerSim), Edinburgh, Scotland, 2008. Accessed: Sep. 30, 2026. [Online]. Available: Designing and Testing Protective Overcurrent Relay Using Real Time Digital Simulation – RTDS Technologies
+[6] A. Saran, P. Kankanala, A. K. Srivastava, and N. N. Schulz, "Designing and testing protective overcurrent relay using real time digital simulation," presented at the Grand Challenges in Modeling & Simulation, Summer Simulation Conference (SummerSim), Edinburgh, Scotland, 2008. Accessed: Sep. 30, 2026. [Online]. Available: [Designing and Testing Protective Overcurrent Relay Using Real Time Digital Simulation – RTDS Technologies](https://knowledge.rtds.com/hc/en-us/articles/360048226653-Designing-and-Testing-Protective-Overcurrent-Relay-Using-Real-Time-Digital-Simulation)
 
-[7] Schweitzer Engineering Laboratories, "TST 103: SEL feeder relay testing." Accessed: Sep. 30, 2026. [Online]. Available: TST 103: SEL Feeder Relay Testing | Schweitzer Engineering Laboratories
+[7] Schweitzer Engineering Laboratories, "TST 103: SEL feeder relay testing." Accessed: Sep. 30, 2026. [Online]. Available: [TST 103: SEL Feeder Relay Testing | Schweitzer Engineering Laboratories](https://selinc.com/selu/courses/tst/103/)
 
-Measures of Success:
+### Measures of Success:
 
-[1] Schweitzer Engineering Laboratories, Inc., SEL-351S Relay Instruction Manual, Date Code 20190809, 2019.
+[1] Schweitzer Engineering Laboratories, Inc., *SEL-351S Relay Instruction Manual*, Date Code 20190809, 2019.
 
 [2] D. E. Wray, "Team 5 Project Summary, Notes, and Tips," email correspondence to Tennessee Technological University Capstone Team 5, Sep. 21, 2026.
 
 [3] D. Costello, K. Behrendt, and A. Amberg, "Enabling Instantaneous Tripping During a Hot Line Tag Condition With the SEL-351S, SEL-351R, and SEL-651R Relays," SEL Application Guide AG2009-12, Date Code 20140115, 2014.
 
-Resources:
+### Resources:
 
-[1] Schweitzer Engineering Laboratories, Inc., SEL-351S Relay Instruction Manual, Date Code 20190809, 2019.
+[1] Schweitzer Engineering Laboratories, Inc., *SEL-351S Relay Instruction Manual*, Date Code 20190809, 2019.
 
 [2] Barrington Instruments, "Model CBS Circuit Breaker Simulator," Barrington Instruments, 2026.
 
 [3] D. E. Wray, "Team 5 Project Summary, Notes, and Tips," email correspondence to Tennessee Technological University Capstone Team 5, Sep. 21, 2026.
 
-Budget:
+### Budget:
 
 [1] Barrington Instruments, "Model CBS Circuit Breaker Simulator," Barrington Instruments, 2026.
 
-[2] Schweitzer Engineering Laboratories, Inc., SEL-351S Relay Instruction Manual, Date Code 20190809, 2019.
+[2] Schweitzer Engineering Laboratories, Inc., *SEL-351S Relay Instruction Manual*, Date Code 20190809, 2019.
 
-Personnel and Team Skills: NA
+### Personnel and Team Skills:
 
-Timeline: NA
+NA
 
-Specific Implications:
+### Timeline:
 
-[1] Schweitzer Engineering Laboratories, Inc., SEL-351S Relay Instruction Manual, Date Code 20190809, 2019.
+NA
 
-[2] Schweitzer Engineering Laboratories, Inc., SEL-351S Protection System, Data Sheet. Pullman, WA, USA. [Online]. Available: SEL-351S Protection System Data Sheet. [Accessed: Oct. 4, 2026].
+### Specific Implications:
+
+NA
+
+[1] Schweitzer Engineering Laboratories, Inc., *SEL-351S Relay Instruction Manual*, Date Code 20190809, 2019.
+
+[2] Schweitzer Engineering Laboratories, Inc., *SEL-351S Protection System*, Data Sheet. Pullman, WA, USA. [Online]. Available: [SEL-351S Protection System Data Sheet](https://selinc.com/api/download/5514/?lang=en). [Accessed: Oct. 4, 2026].
 
 [3] D. Costello, K. Behrendt, and A. Amberg, "Enabling instantaneous tripping during a Hot Line Tag condition with the SEL-351S, SEL-351R, and SEL-651R relays," Schweitzer Engineering Laboratories, Application Guide AG2009-12, rev. Jan. 15, 2014.
 
-Broader Implications, Ethics, and Responsibility as Engineers:
+### Broader Implications, Ethics, and Responsibility as Engineers:
 
-[1] International Electrotechnical Commission, "Safety requirements for electrical equipment for measurement, control, and laboratory use—Part 1: General requirements," IEC 61010-1:2010+AMD1:2016. Accessed: Oct. 7, 2026. [Online]. Available: https://webstore.iec.ch/en/publication/59769
+[1] International Electrotechnical Commission, "Safety requirements for electrical equipment for measurement, control, and laboratory use—Part 1: General requirements," IEC 61010-1:2010+AMD1:2016. Accessed: Oct. 7, 2026. [Online]. Available: [IEC 61010-1:2010+AMD1:2016 CSV | IEC](https://webstore.iec.ch/en/publication/59769)
 
-[2] Tennessee Technological University, "Lab safety." Accessed: Oct. 7, 2026. [Online]. Available: https://www.tntech.edu/safety/lab-safety.php
+[2] Tennessee Technological University, "Lab safety." Accessed: Oct. 7, 2026. [Online]. Available: [Environmental Health & Safety - Lab Safety](https://www.tntech.edu/safety/lab-safety.php)
 
-[3] Occupational Safety and Health Administration, "General," 29 CFR 1910.303. Accessed: Oct. 7, 2026. [Online]. Available: https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.303
+[3] Occupational Safety and Health Administration, "General," 29 CFR 1910.303. Accessed: Oct. 7, 2026. [Online]. Available: [1910.303 - General. | Occupational Safety and Health Administration](https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.303)
 
-[4] Occupational Safety and Health Administration, "Selection and use of work practices," 29 CFR 1910.333. Accessed: Oct. 7, 2026. [Online]. Available: https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.333
+[4] Occupational Safety and Health Administration, "Selection and use of work practices," 29 CFR 1910.333. Accessed: Oct. 7, 2026. [Online]. Available: [1910.333 - Selection and use of work practices. | Occupational Safety and Health Administration](https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.333)
 
-[5] K. Zimmerman and D. Costello, "Lessons learned from commissioning protective relaying systems," Schweitzer Engineering Laboratories, technical paper. Accessed: Oct. 7, 2026. [Online]. Available: https://cdn.selinc.com/assets/Literature/Publications/Technical%20Papers/6360_LessonsLearned_KZ-DC_20120120_Web.pdf
+[5] K. Zimmerman and D. Costello, "Lessons learned from commissioning protective relaying systems," Schweitzer Engineering Laboratories, technical paper. Accessed: Oct. 7, 2026. [Online]. Available: [https://cdn.selinc.com/assets/Literature/Publications/Technical%20Papers/6360_LessonsLearned_KZ-DC_20120120_Web.pdf](https://cdn.selinc.com/assets/Literature/Publications/Technical%20Papers/6360_LessonsLearned_KZ-DC_20120120_Web.pdf)
 
-[6] National Society of Professional Engineers, "Code of ethics for engineers," rev. Jul. 2019. Accessed: Oct. 7, 2026. [Online]. Available: https://www.nspe.org/sites/default/files/resources/pdfs/Ethics/CodeofEthics/NSPECodeofEthicsforEngineers.pdf
+[6] National Society of Professional Engineers, "Code of ethics for engineers," rev. Jul. 2019. Accessed: Oct. 7, 2026. [Online]. Available: [NSPECodeofEthicsforEngineers.pdf](https://www.nspe.org/sites/default/files/resources/pdfs/Ethics/CodeofEthics/NSPECodeofEthicsforEngineers.pdf)
 
-[7] U.S. Environmental Protection Agency, "Electronics donation and recycling." Accessed: Oct. 7, 2026. [Online]. Available: https://www.epa.gov/recycle/electronics-donation-and-recycling
-
+[7] U.S. Environmental Protection Agency, "Electronics donation and recycling." Accessed: Oct. 7, 2026. [Online]. Available: [https://www.epa.gov/recycle/electronics-donation-and-recycling](https://www.epa.gov/recycle/electronics-donation-and-recycling)
 
 ## Statement of Contributions
 
