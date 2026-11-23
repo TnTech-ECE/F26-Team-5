@@ -95,60 +95,64 @@ The project shall provide a programmable secondary-current injection system for 
 
 The SEL-351S relay testing system will be designed to operate under the following safety and regulatory requirements:
 
-1. The material cost for the SEL-351S relay test system shall not exceed the approved project budget given by Tennessee Technological University.
-2. The test system shall use IEC 61010-1 as a design reference for electrical measurement, control, and laboratory equipment safety. \[3\]
-3. The testing system shall comply with any applicable Tennessee Technological University laboratory safety policies and faculty supervision requirements. \[4\]
-4. The test system shall remain within the voltage, current, contact-loading, and thermal ratings specified for the installed SEL-351S relay and all test-system components. \[5\]
-5. The simulated 52A breaker-status voltage shall be compatible with the assigned relay input. \[5\]
-6. The test system shall electrically isolate low-voltage control and measurement electronics from hazardous-voltage circuits. \[3\]
-7. The test system shall incorporate guarded terminals, appropriate grounding, and overcurrent protection. \[3\], \[6\]
-8. Design and testing shall prevent hazards or disruption to students, faculty, laboratory equipment, and nearby electrical systems. \[4\], \[6\]
-9. The test system shall conform to additional client, faculty, and campus requirements established before laboratory use.
+1.	The material cost for the SEL-351S relay test system shall not exceed the approved project budget given by Tennessee Technological University. This limits component selection, building methods, and additional system features.
+2.	The test system shall use IEC 61010-1 as a design reference for electrical measurement, control, and laboratory equipment safety [3]. This standard guides electrical insulation, protection against electric shock, and safe equipment operation.
+3.	The testing system shall comply with any applicable Tennessee Technological University laboratory safety policies and faculty supervision requirements [4]. These requirements guide testing procedures and the equipment setup.
+4.	The test system shall remain within the voltage, current, contact-loading, and thermal ratings specified for the installed SEL-351S relay and all test-system components [5]. These ratings establish limits on signal levels, power delivery, and test duration.
+5.	The simulated 52A breaker-status voltage shall be compatible with the assigned relay input [5]. This requirement constrains signal voltage levels and interface circuitry to prevent damage to the relay.
+6.	The test system shall electrically isolate low-voltage control and measurement electronics from hazardous-voltage circuits [3]. This requirement limits component selection, circuit layout, and how components are isolated to protect the users.
+7.	The test system shall incorporate guarded terminals, appropriate grounding, and overcurrent protection [3], [6]. These requirements constrain wiring arrangements, enclosure design, and protective device selection to ensure safe operation.
+8.	Design and testing shall prevent hazards or disruption to students, faculty, laboratory equipment, and nearby electrical systems [4], [6]. These requirements direct the equipment setup, safety procedures, and system operation to minimize electrical hazards during operation.
+9.	The test system shall conform to additional client, faculty, and campus requirements established before laboratory use. Testing procedures shall minimize hazards to students, faculty, laboratory equipment, and nearby electrical systems.
+
 
 ## Survey of Existing Solutions
 
-Existing approaches to protective-relay education and testing include manufacturer training, educational laboratory systems, circuit breaker simulators, professional relay-testing equipment, and power-system simulation software. The solutions reviewed below address relay familiarity, practical testing experience, and distribution-system coordination.
+Existing approaches to protective-relay evaluation include commercial secondary-injection test sets, standalone circuit breaker simulators, and real-time power-system simulation. Manufacturer testing guidance also provides methods for selecting test conditions and analyzing relay-recorded data. These approaches inform the proposed system’s current generation, breaker-status simulation, and reporting functions.
 
-Schweitzer Engineering Laboratories (SEL) offers several training courses covering the SEL-351 family, including the SEL-351S. These courses provide instruction ranging from introductory operation to hands-on testing and troubleshooting. **CBT 351: Introduction to SEL-351 Relays** is a four-hour, self-paced course covering SEL-351 and SEL-351S protection functions, front and rear-panel interfaces, settings, logic programming, communications, and event reporting. Its learning activities include simulated front-panel operation, interpreting indicators, configuring inputs and outputs, and entering settings through acSELerator QuickSet software. The course also covers retrieving event data and using metering and sequential event records to diagnose problems \[1\]. **APP 351: SEL-351 Protection System** provides application training for the SEL-351 family. Its published course information includes distinctions among SEL-351 models, SEL-351S operator controls, breaker monitoring, and use of acSELerator QuickSet. Hands-on exercises are included in the course agenda \[2\]. **TST 103: SEL Feeder Relay Testing** is a three-day course focused on entering settings, testing, commissioning, and troubleshooting SEL relays. The course uses several relay models, including the SEL-351S, and includes hands-on SEL-351S testing and analysis. Learning outcomes include calculating test points from relay settings, interpreting relay logic, and analyzing responses through metering, sequential event recording, and event reports \[3\].
+The OMICRON CMC 500 is a modular, multiphase relay test system intended for evaluating protection devices and systems. Its software supports two complementary approaches: settings-based testing through Test Universe and system-based testing through RelaySimTest. Settings-based testing evaluates individual protection functions against configured parameters, while system-based testing examines protection behavior under simulated network conditions [1]. Test Universe also supports automated test execution and documentation, while OMICRON Control Center supports repeatable workflows and automatic reporting [2]. These capabilities provide a reference for organizing the proposed system’s test sequences and presenting expected and measured results. Reports generated by external test equipment must be distinguished from data recorded internally by the SEL-351S; the proposed project will identify the source of each reported measurement. Vendor correspondence provided to the team estimated the CMC 500 system cost at $60,000–$120,000, depending on the selected hardware package and software options [3]. The CMC 500 offers capabilities beyond the selected current-injection tests, whereas this project will address a narrower set of SEL-351S functions.
 
-An educational laboratory system includes Festo Didactic's numerical-relay instructional modules based on Siemens SIPROTEC equipment. Its LabVolt Series 3813 numerical distance relay is described as a training system based on the SIPROTEC 5 series. These products represent an existing approach to teaching numerical protection using commercial relay technology in an educational setting \[4\]. Festo Didactic also has the LabVolt Series 3812-A Numerical Directional Overcurrent Relay which is designed for studying overcurrent, overload, and directional protection. This equipment represents an approach to teaching protective-relay operation through a dedicated instructional module \[5\].
+Standalone circuit breaker simulators provide another relevant solution. The Barrington Model CBS simulates trip and close operation without requiring operation of a high-voltage breaker. It accepts trip and close connections and provides six auxiliary contacts: three normally open and three normally closed. The manufacturer specifies compatibility with 48 VDC and 125 VDC systems and provides manual operating controls and status indicators [4]. PONOVO’s PSS01 similarly supports secondary protection-scheme testing by simulating breaker operation alongside a relay test set. PONOVO states that it can operate with relay testers from other manufacturers [5]. These products demonstrate how breaker simulation can complement current injection. For the proposed system, the relevant functions are recognizing relay TRIP and CLOSE commands and providing corresponding breaker-status feedback.
 
-Some standalone circuit breaker simulators could be the **Barrington Model CBS**, which is designed to verify protective-relay trip and close operation without operating a high-voltage circuit breaker. It accepts trip and close commands and provides six auxiliary contacts: three normally open and three normally closed. The simulator also includes manual trip and close buttons, LED indications, and protection against reverse polarity or incorrectly applied source volage. Barrington specifies operation with 48 VDC and 125 VDC systems \[6\]. **The PONOVO PSS01** is another commercial circuit breaker simulator. It simulates breaker tripping and closing and returns feedback during secondary protection-scheme testing. PONOVO describes the device as an accessory used alongside a relay test set and states that it can operate with relay testers from other manufacturers. Its purpose is to support testing of the secondary protection circuit while avoiding repeated operation of the actual breaker \[7\].
+Real-time power-system simulation provides a more extensive approach to evaluating physical relays. Saran, Kankanala, Srivastava, and Schulz investigated an SEL-351S using a Real Time Digital Simulator. Their publication describes hardware-in-the-loop testing of a physical relay within an eight-bus power-system model, along with development of a software relay model in RSCAD [6]. This work provides a directly relevant example of applying simulated power-system conditions to an actual SEL-351S and evaluating its response. The proposed project will use selected programmable fault-current waveforms rather than a complete real-time network model, emphasizing repeatable secondary-current injection and relay-response evaluation.
 
-For professional relay-testing equipment, the OMICRON CMC 500 is a modular, multiphase test system designed to evaluate protective relays and protection systems. It supports testing applications ranging from electromechanical relays to digital protection devices. With OMICRON's Test Universe software, it supports detailed testing of individual relay functions; with RelaySimTest, it supports evaluation of protection-system behavior under simulated network conditions \[8\]. This test system can range between \$60,000 - \$120,000, depending on the package and software options selected. \[9\]
+Manufacturer testing guidance is also relevant to developing test procedures and interpreting results. SEL’s TST 103 course includes SEL-351S testing and analysis. Its stated learning outcomes include calculating test points from relay settings, interpreting protection logic, and evaluating responses using metering, sequential event records, and event reports [7]. These methods support the project’s planned verification spreadsheet and reporting process by connecting applied test conditions to information recorded by the relay.
 
-A directly relevant publication is "_Designing and Testing Protective Overcurrent Relay Using Real Time Digital Simulation,"_ by A. Saran, P. Kankanala, A. K. Srivastava, and N. N. Schulz, presented in 2008. The Real Time Digital Simulator (RTDS) hosted abstract describes Hardware in the Loop (HIL) testing of a physical SEL-351S overcurrent relay within an eight-bus power-system model. It also describes the development of a software relay model in RSCAD and a proposed procedure for software-in-the-loop testing \[10\].
+The reviewed solutions provide references for controlled current injection, breaker-operation feedback, repeatable test sequences, and documented results. The proposed design will combine these functions for selected SEL-351S tests, with performance and limitations established through verification.
+
 
 ## Measures of Success
 
-The success of the project will be determined by testing the completed training system under the operating conditions specified for the SEL-351S relay. The testing process shall verify the operation of the current-injection system, SEL-351S protection functions, Hot Line Tag (HLT) logic, circuit-breaker simulation, and data-recording functions. The SEL-351S instruction manual identifies relay testing as a process for verifying protection elements, logic functions, input and output operation, and auxiliary equipment. It also identifies relay metering, event reports, and Sequential Events Recorder (SER) data as tools for evaluating relay performance \[1\].
+The success of the project will be determined by testing the completed training system under the operating conditions specified for the SEL-351S relay. The testing process shall verify the operation of the current-injection system, SEL-351S protection functions, Hot Line Tag (HLT) logic, circuit-breaker simulation, and data-recording functions. The SEL-351S instruction manual identifies relay testing as a process for verifying protection elements, logic functions, input and output operation, and auxiliary equipment. It also identifies relay metering, event reports, and Sequential Events Recorder (SER) data as tools for evaluating relay performance [1].
 
-1. The current-injection system shall be capable of applying the current levels required to test the programmed SEL-351S protection elements. The system shall simulate the fault conditions required by the project without requiring an actual power-system fault. The required current levels shall be determined from the final relay settings for the two setting groups. Testing shall verify that the relay detects currents above the programmed pickup levels and does not produce an unintended trip when the applied current is below the applicable pickup level \[1\], \[2\].
-2. Both SEL-351S setting groups shall be tested to verify that the relay operates according to their intended settings. Testing shall include the applicable phase and ground/neutral overcurrent protection functions, including ANSI 50 instantaneous overcurrent and ANSI 51 time-overcurrent elements. For each protection element, the applied current, expected operation, actual operation, and operating time shall be recorded and compared. A test shall be considered successful when the measured relay response falls within the acceptable operating range established by the relay specifications and project requirements \[1\], \[2\].
-3. The inverse-time characteristics of the ANSI 51 elements shall be verified. At least four test points shall be used for each applicable inverse-time curve so that the system demonstrates the relationship between fault-current magnitude and relay operating time. The expected operating time at each test point shall be calculated from the relay settings and compared with the measured operating time. This testing methodology is consistent with the testing procedure provided by the project supervisor and the SEL-351S documentation \[1\], \[2\].
-4. The ANSI 79 reclosing function shall be tested as a complete sequence rather than only verifying an individual trip or close operation. When reclosing is enabled, the system shall verify that a fault causes the expected trip, breaker opening, reclose attempt, and subsequent trip/reclose operations until the programmed lockout condition is reached. The sequence shall also be tested with reclosing disabled to verify that the relay does not perform an unintended reclose operation \[1\], \[2\].
-5. The modified Hot Line Tag (HLT) function shall be verified. When HLT is active, the system shall demonstrate that the relay provides the intended high-speed trip response for the applicable fault condition and prevents the breaker from closing or automatically reclosing. SEL documentation describes HLT as a condition that can block closing and reclosing and provides application guidance for modifying the SEL-351S logic to enable instantaneous tripping during an HLT condition \[3\]. The HLT tests shall also verify that normal protection and reclosing behavior are restored when HLT is removed.
-6. The circuit-breaker simulator shall correctly respond to relay trip and close commands. A relay TRIP output shall cause the simulated breaker to indicate an open or de-energized condition, and a relay CLOSE output shall cause the simulator to indicate a closed condition when closing is permitted. The simulated breaker status shall be provided to the relay through the appropriate feedback signal. The test system shall also stop or enable current injection according to the simulated breaker state so that the relay experiences the same basic sequence of events expected from a circuit breaker \[2\].
-7. The system shall record sufficient information to determine whether each test passed or failed. Relay event reports, SER information, relay element states, input/output states, applied current, and measured operating time shall be used when applicable to compare expected and actual operation. The SEL-351S documentation identifies event reports and input/output information as methods for determining whether protection elements and auxiliary equipment operate at the correct times \[1\].
-8. The completed system shall demonstrate repeatable operation and usability as a training device. Repeated tests performed using the same relay settings and test conditions shall produce consistent results within the established measurement tolerances. A novice user shall also be able to follow the completed test procedure and obtain a clear record of the expected result, measured result, deviation, and pass/fail status without requiring extensive assistance from the project team. The final testing procedure and report shall document the test conditions, expected response, measured response, and any deviations identified during testing.
+1.	The current-injection system shall be capable of applying the current levels required to test the programmed SEL-351S protection elements. The system shall simulate the fault conditions required by the project without requiring an actual power-system fault. The required current levels shall be determined from the final relay settings for the two setting groups. Testing shall verify that the relay detects currents above the programmed pickup levels and does not produce an unintended trip when the applied current is below the applicable pickup level [1], [2].
+2.	Both SEL-351S setting groups shall be tested to verify that the relay operates according to their intended settings. Testing shall include the applicable phase and ground/neutral overcurrent protection functions, including ANSI 50 instantaneous overcurrent and ANSI 51 time-overcurrent elements. For each protection element, the applied current, expected operation, actual operation, and operating time shall be recorded and compared. A test shall be considered successful when the measured relay response falls within the acceptable operating range established by the relay specifications and project requirements [1], [2].
+3.	The inverse-time characteristics of the ANSI 51 elements shall be verified. At least four test points shall be used for each applicable inverse-time curve so that the system demonstrates the relationship between fault-current magnitude and relay operating time. The expected operating time at each test point shall be calculated from the relay settings and compared with the measured operating time. This testing methodology is consistent with the testing procedure provided by the project supervisor and the SEL-351S documentation [1], [2].
+4.	The ANSI 79 reclosing function shall be tested as a complete sequence rather than only verifying an individual trip or close operation. When reclosing is enabled, the system shall verify that a fault causes the expected trip, breaker opening, reclose attempt, and subsequent trip/reclose operations until the programmed lockout condition is reached. The sequence shall also be tested with reclosing disabled to verify that the relay does not perform an unintended reclose operation [1], [2].
+5.	The modified Hot Line Tag (HLT) function shall be verified. When HLT is active, the system shall demonstrate that the relay provides the intended high-speed trip response for the applicable fault condition and prevents the breaker from closing or automatically reclosing. SEL documentation describes HLT as a condition that can block closing and reclosing and provides application guidance for modifying the SEL-351S logic to enable instantaneous tripping during an HLT condition [3]. The HLT tests shall also verify that normal protection and reclosing behavior are restored when HLT is removed.
+6.	The circuit-breaker simulator shall correctly respond to relay trip and close commands. A relay TRIP output shall cause the simulated breaker to indicate an open or de-energized condition, and a relay CLOSE output shall cause the simulator to indicate a closed condition when closing is permitted. The simulated breaker status shall be provided to the relay through the appropriate feedback signal. The test system shall also stop or enable current injection according to the simulated breaker state so that the relay experiences the same basic sequence of events expected from a circuit breaker [2].
+7.	The system shall record sufficient information to determine whether each test passed or failed. Relay event reports, SER information, relay element states, input/output states, applied current, and measured operating time shall be used when applicable to compare expected and actual operation. The SEL-351S documentation identifies event reports and input/output information as methods for determining whether protection elements and auxiliary equipment operate at the correct times [1].
+8.	The completed system shall demonstrate repeatable operation and usability as a training device. Repeated tests performed using the same relay settings and test conditions shall produce consistent results within the established measurement tolerances. A novice user shall also be able to follow the completed test procedure and obtain a clear record of the expected result, measured result, deviation, and pass/fail status without requiring extensive assistance from the project team. The final testing procedure and report shall document the test conditions, expected response, measured response, and any deviations identified during testing.
+
 
 ## Resources
 
 The project will require electrical equipment, protection-relay hardware, test equipment, software, laboratory facilities, and technical guidance. The resources will be selected to allow the completed system to simulate representative power-system faults, operate the SEL-351S relay, simulate circuit-breaker operation, and record the resulting test data.
 
-The primary protection device will be an SEL-351S protective relay. The relay shall be programmed with the two setting groups required by the project and modified to include the required Hot Line Tag functionality. The SEL-351S provides the overcurrent protection, programmable logic, input/output contacts, metering, event reporting, and Sequential Events Recorder functions required for the project \[1\].
+The primary protection device will be an SEL-351S protective relay. The relay shall be programmed with the two setting groups required by the project and modified to include the required Hot Line Tag functionality. The SEL-351S provides the overcurrent protection, programmable logic, input/output contacts, metering, event reporting, and Sequential Events Recorder functions required for the project [1].
 
 A controlled AC current source will be required to simulate the currents that the SEL-351S would experience during normal and fault conditions. The required current output will be determined from the final relay settings and test procedures rather than from a predetermined maximum. Existing OMICRON protection-relay test equipment is available through Tennessee Technological University; it may be used for current injection and relay testing.
 
-The project will also require a circuit-breaker simulation system. This system will include the necessary interface circuitry to receive the SEL-351S TRIP and CLOSE outputs, simulate breaker opening and closing, and return the appropriate breaker-status feedback to the relay. The system shall provide the 52A breaker-status signal required for the relay's control logic. Additional interface components, control relays, power supplies, protection devices, terminal blocks, wiring, and connectors will be required to construct the simulator. The Barrington CBS is a possible candidate for breaker simulation \[1\], \[2\].
+The project will also require a circuit-breaker simulation system. This system will include the necessary interface circuitry to receive the SEL-351S TRIP and CLOSE outputs, simulate breaker opening and closing, and return the appropriate breaker-status feedback to the relay. The system shall provide the 52A breaker-status signal required for the relay's control logic. Additional interface components, control relays, power supplies, protection devices, terminal blocks, wiring, and connectors will be required to construct the simulator. The Barrington CBS is a possible candidate for breaker simulation [1], [2].
 
-A computer will be required for relay configuration, test control, data collection, and documentation. SEL acSELerator QuickSet software will be used as applicable for configuring the SEL-351S, while event and SER information will be used to analyze relay operation \[1\]. Spreadsheet software may be used to calculate expected operating times, compare expected and measured results, and produce pass/fail results. Additional software or automation may be incorporated if it improves the repeatability or usability of the completed training system.
+A computer will be required for relay configuration, test control, data collection, and documentation. SEL acSELerator QuickSet software will be used as applicable for configuring the SEL-351S, while event and SER information will be used to analyze relay operation [1]. Spreadsheet software may be used to calculate expected operating times, compare expected and measured results, and produce pass/fail results. Additional software or automation may be incorporated if it improves the repeatability or usability of the completed training system.
 
 The project will also require laboratory test equipment for construction and verification. Expected equipment includes digital multimeters, oscilloscopes or other timing and measurement equipment as necessary, power supplies, electrical safety equipment, wiring tools, and appropriate protective devices. Existing Tennessee Technological University laboratory equipment will be used whenever practical to reduce project cost.
 
-Technical resources will include the SEL-351S instruction manual, SEL application documentation, relay-testing guidance, and information provided by the project supervisor. The project team will use manufacturer documentation to determine relay settings, operating characteristics, testing methods, and HLT behavior \[1\], \[2\]. Guidance from Daniel Wray will be used to establish the intended relay operating scenarios and test procedures \[3\].
+Technical resources will include the SEL-351S instruction manual, SEL application documentation, relay-testing guidance, and information provided by the project supervisor. The project team will use manufacturer documentation to determine relay settings, operating characteristics, testing methods, and HLT behavior [1], [2]. Guidance from Daniel Wray will be used to establish the intended relay operating scenarios and test procedures [3].
 
 The project will be developed in two major stages. During the current Capstone I semester, the team will focus on relay research, system design, test planning, component selection, and development of the required documentation. During Capstone II, the team will construct the hardware, integrate the relay and breaker simulator, develop the testing procedures, and perform final verification.
+
 
 ## Budget
 
@@ -214,13 +218,14 @@ Dr. Johnson will provide academic oversight, establish course requirements, revi
 
 Successful completion of the proposed project will provide Tennessee Technological University with a reusable laboratory platform for teaching protective-relay operation and testing. The system will allow students to gain practical experience with an SEL-351S protective relay in a controlled laboratory environment. Students will be able to observe the relationship between simulated fault conditions, relay protection logic, trip and close commands, circuit-breaker status, and recorded relay data. This experience will supplement classroom instruction by allowing power-system protection concepts to be examined through physical testing.
 
-The completed system will allow students to investigate several protection and control functions available on the SEL-351S. Students will be able to test instantaneous and time-overcurrent protection, compare the operation of two relay setting groups, observe automatic-reclosing sequences, operate the Hot Line Tag function, and examine the interaction between the protective relay and simulated circuit breaker \[1\], \[2\], \[3\]. The testing procedure will also require expected relay operating times to be compared with measured operating times. This will allow students to connect calculated protection characteristics and relay settings with the measured response of a physical protective relay.
+The completed system will allow students to investigate several protection and control functions available on the SEL-351S. Students will be able to test instantaneous and time-overcurrent protection, compare the operation of two relay setting groups, observe automatic-reclosing sequences, operate the Hot Line Tag function, and examine the interaction between the protective relay and simulated circuit breaker [1], [2], [3]. The testing procedure will also require expected relay operating times to be compared with measured operating times. This will allow students to connect calculated protection characteristics and relay settings with the measured response of a physical protective relay.
 
 Another important benefit to Tennessee Technological University will be the repeatability and usability of the completed system. The project will include a detailed test procedure intended for a novice operator as well as a test report that compares expected and actual results, identifies deviations, and assigns pass/fail results. These are already explicit requirements of the proposed system. The system is intended to allow future students to perform established relay tests without requiring extensive assistance from the original project team. This will allow the project to remain useful as an instructional resource after the senior design project is completed.
 
-The proposed system will also make use of existing Tennessee Technological University equipment whenever practical to reduce the amount of equipment that must be purchased specifically for the project. The preliminary project budget estimates a total project cost between \$537 and \$3,813, depending largely on the equipment already available through the university. Existing laboratory equipment may be used for functions such as current injection, measurement, and testing, while project-specific hardware can be constructed for functions such as circuit-breaker simulation. This approach allows project resources to be focused on the equipment necessary to satisfy the intended educational objectives.
+The proposed system will also make use of existing Tennessee Technological University equipment whenever practical to reduce the amount of equipment that must be purchased specifically for the project. The preliminary project budget estimates a total project cost between $537 and $3,813, depending largely on the equipment already available through the university. Existing laboratory equipment may be used for functions such as current injection, measurement, and testing, while project-specific hardware can be constructed for functions such as circuit-breaker simulation. This approach allows project resources to be focused on the equipment necessary to satisfy the intended educational objectives.
 
 The system is also intended to provide value beyond its initial development. Commercially available and replaceable components will be favored where practical so that the system can be maintained, repaired, or modified for future use. This design approach is intended to support continued use of the system for future student training. By combining an industrial protective relay with controlled current injection, circuit-breaker simulation, documented test procedures, and recorded test results, the completed project will provide Tennessee Technological University with both a functional senior design deliverable and a reusable educational tool for instruction in power-system protection.
+
 
 ## Broader Implications, Ethics, and Responsibility as Engineers
 
@@ -248,111 +253,73 @@ Each team member will prioritize safety responsibility and honesty throughout th
 ## References
 
 
-**Introduction:**
+Introduction:
 
-\[1\] K. Zimmerman and D. Costello, "Lessons learned from commissioning protective relaying systems," Schweitzer Engineering Laboratories, technical paper. Accessed: Oct. 6, 2026. \[Online\]. Available: <https://cdn.selinc.com/assets/Literature/Publications/Technical%20Papers/6360_LessonsLearned_KZ-DC_20120120_Web.pdf>
+[1] K. Zimmerman and D. Costello, "Lessons learned from commissioning protective relaying systems," Schweitzer Engineering Laboratories, technical paper. Accessed: Oct. 6, 2026. [Online]. Available: https://cdn.selinc.com/assets/Literature/Publications/Technical%20Papers/6360_LessonsLearned_KZ-DC_20120120_Web.pdf
+[2] Schweitzer Engineering Laboratories, "SEL-351S protection system," data sheet. Accessed: Oct. 6, 2026. [Online]. Available: SEL-351S Protection System Data Sheet
 
-\[2\] Schweitzer Engineering Laboratories, "SEL-351S protection system," data sheet. Accessed: Oct. 6, 2026. \[Online\]. Available: <https://selinc.com/api/download/5514/?lang=en>
+Background:
 
-**Formulating the Problem:**
+[1] Schweitzer Engineering Laboratories, Inc., SEL-351S Relay Instruction Manual, Date Code 20190809, 2019.
+[2] Schweitzer Engineering Laboratories, Inc., SEL-351S Protection System, Data Sheet. Pullman, WA, USA. [Online]. Available: SEL-351S Protection System Data Sheet. [Accessed: Oct. 4, 2026].
+[3] D. Costello, K. Behrendt, and A. Amberg, "Enabling instantaneous tripping during a Hot Line Tag condition with the SEL-351S, SEL-351R, and SEL-651R relays," Schweitzer Engineering Laboratories, Application Guide AG2009-12, rev. Jan. 15, 2014.
 
-\[1\] SEL. "SEL-4000 Product Page". SEL.com Accessed: Sep. 30, 2026. \[Online.\] Available: <https://selinc.com/products/4000/>
+Specifications and Constraints:
 
-\[2\] SEL. "SEL-351S Product Page". SEL.com Accessed: Sep. 30, 2026. \[Online.\] Available: <https://selinc.com/products/351s/>
+[1] D. Costello, K. Behrendt, and A. Amberg, "Enabling instantaneous tripping during a Hot Line Tag condition with the SEL-351S, SEL-351R, and SEL-651R relays," Schweitzer Engineering Laboratories, Application Guide AG2009-12, rev. Jan. 15, 2014.
+[2] Schweitzer Engineering Laboratories, "SEL-351S protection system," data sheet. Accessed: Oct. 1, 2026. [Online]. Available: SEL-351S Protection System Data Sheet
+[3] International Electrotechnical Commission, "Safety requirements for electrical equipment for measurement, control, and laboratory use—Part 1: General requirements," IEC 61010-1:2010+AMD1:2016. Accessed: Oct. 7, 2026. [Online]. Available: https://webstore.iec.ch/en/publication/59769
+[4] Tennessee Technological University, "Lab safety." Accessed: Oct. 7, 2026. [Online]. Available: https://www.tntech.edu/safety/lab-safety.php
+[5] Schweitzer Engineering Laboratories, "SEL-351S protection system," documentation. Accessed: Oct. 7, 2026. [Online]. Available: https://selinc.com/products/351S/docs/
+[6] Occupational Safety and Health Administration, "General," 29 CFR 1910.303. Accessed: Oct. 7, 2026. [Online]. Available: https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.303
 
-**Background:**
+Survey of Existing Solutions:
 
-\[1\] Schweitzer Engineering Laboratories, Inc., _SEL-351S Relay Instruction Manual_, Date Code 20190809, 2019.
+[1] OMICRON electronics, "CMC 500." Accessed: Sep. 30, 2026. [Online]. Available: CMC 500 - OMICRON electronics GmbH
+[2] OMICRON electronics, "Test Universe." Accessed: Nov. 19, 2026. [Online]. Available: Test Universe - OMICRON electronics GmbH
+[3] Eric Foster, "CMC-500 //OMI06920000052," email correspondence to Tennessee Technological University Capstone Team 5, Oct. 2, 2026.
+[4] Barrington Consultants, Inc., "CBS." Accessed: Sep. 30, 2026. [Online]. Available: Barrington Consultants, Inc. | CBS
+[5] PONOVO, "PSS01 circuit breaker simulation device." Accessed: Sep. 30, 2026. [Online]. Available: PSS01 Circuit Breaker Simulation Device Manufacturers, Suppliers, Factory, Company - PONOVO
+[6] A. Saran, P. Kankanala, A. K. Srivastava, and N. N. Schulz, "Designing and testing protective overcurrent relay using real time digital simulation," presented at the Grand Challenges in Modeling & Simulation, Summer Simulation Conference (SummerSim), Edinburgh, Scotland, 2008. Accessed: Sep. 30, 2026. [Online]. Available: Designing and Testing Protective Overcurrent Relay Using Real Time Digital Simulation – RTDS Technologies
+[7] Schweitzer Engineering Laboratories, "TST 103: SEL feeder relay testing." Accessed: Sep. 30, 2026. [Online]. Available: TST 103: SEL Feeder Relay Testing | Schweitzer Engineering Laboratories
 
-\[2\] Schweitzer Engineering Laboratories, Inc., _SEL-351S Protection System_, Data Sheet. Pullman, WA, USA. \[Online\]. Available: [SEL-351S Protection System Data Sheet](https://selinc.com/api/download/5514/?lang=en&utm_source=chatgpt.com). \[Accessed: Oct. 4, 2026\].
+Measures of Success:
 
-\[3\] D. Costello, K. Behrendt, and A. Amberg, "Enabling instantaneous tripping during a Hot Line Tag condition with the SEL-351S, SEL-351R, and SEL-651R relays," Schweitzer Engineering Laboratories, Application Guide AG2009-12, rev. Jan. 15, 2014.
+[1] Schweitzer Engineering Laboratories, Inc., SEL-351S Relay Instruction Manual, Date Code 20190809, 2019.
+[2] D. E. Wray, "Team 5 Project Summary, Notes, and Tips," email correspondence to Tennessee Technological University Capstone Team 5, Sep. 21, 2026.
+[3] D. Costello, K. Behrendt, and A. Amberg, "Enabling Instantaneous Tripping During a Hot Line Tag Condition With the SEL-351S, SEL-351R, and SEL-651R Relays," SEL Application Guide AG2009-12, Date Code 20140115, 2014.
 
-**Specifications and Constraints:**
+Resources:
 
-\[1\] D. Costello, K. Behrendt, and A. Amberg, "Enabling instantaneous tripping during a Hot Line Tag condition with the SEL-351S, SEL-351R, and SEL-651R relays," Schweitzer Engineering Laboratories, Application Guide AG2009-12, rev. Jan. 15, 2014.
+[1] Schweitzer Engineering Laboratories, Inc., SEL-351S Relay Instruction Manual, Date Code 20190809, 2019.
+[2] Barrington Instruments, "Model CBS Circuit Breaker Simulator," Barrington Instruments, 2026.
+[3] D. E. Wray, "Team 5 Project Summary, Notes, and Tips," email correspondence to Tennessee Technological University Capstone Team 5, Sep. 21, 2026.
 
-\[2\] Schweitzer Engineering Laboratories, "SEL-351S protection system," data sheet. Accessed: Oct. 1, 2026. \[Online\]. Available: <https://selinc.com/api/download/5514/?lang=en>
+Budget:
 
-\[3\] International Electrotechnical Commission, "Safety requirements for electrical equipment for measurement, control, and laboratory use—Part 1: General requirements," IEC 61010-1:2010+AMD1:2016. Accessed: Oct. 7, 2026. \[Online\]. Available: [https://webstore.iec.ch/en/publication/59769](https://webstore.iec.ch/en/publication/59769?utm_source=chatgpt.com)
+[1] Barrington Instruments, "Model CBS Circuit Breaker Simulator," Barrington Instruments, 2026.
+[2] Schweitzer Engineering Laboratories, Inc., SEL-351S Relay Instruction Manual, Date Code 20190809, 2019.
 
-\[4\] Tennessee Technological University, "Lab safety." Accessed: Oct. 7, 2026. \[Online\]. Available: [https://www.tntech.edu/safety/lab-safety.php](https://www.tntech.edu/safety/lab-safety.php?utm_source=chatgpt.com)
+Personnel and Team Skills: NA
 
-\[5\] Schweitzer Engineering Laboratories, "SEL-351S protection system," documentation. Accessed: Oct. 7, 2026. \[Online\]. Available: [https://selinc.com/products/351S/docs/](https://selinc.com/products/351S/docs/?utm_source=chatgpt.com)
+Timeline: NA
 
-\[6\] Occupational Safety and Health Administration, "General," 29 CFR 1910.303. Accessed: Oct. 7, 2026. \[Online\]. Available: [https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.303](https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.303?utm_source=chatgpt.com)
+Specific Implications:
 
-**Survey of Existing Solutions:**
+[1] Schweitzer Engineering Laboratories, Inc., SEL-351S Relay Instruction Manual, Date Code 20190809, 2019.
+[2] Schweitzer Engineering Laboratories, Inc., SEL-351S Protection System, Data Sheet. Pullman, WA, USA. [Online]. Available: SEL-351S Protection System Data Sheet. [Accessed: Oct. 4, 2026].
+[3] D. Costello, K. Behrendt, and A. Amberg, "Enabling instantaneous tripping during a Hot Line Tag condition with the SEL-351S, SEL-351R, and SEL-651R relays," Schweitzer Engineering Laboratories, Application Guide AG2009-12, rev. Jan. 15, 2014.
 
-\[1\] Schweitzer Engineering Laboratories, "CBT 351: Introduction to SEL-351 relays." Accessed: Sep. 30, 2026. \[Online\]. Available: [https://selinc.com/selu/courses/cbt/351/](https://selinc.com/selu/courses/cbt/351/?utm_source=chatgpt.com)
+Broader Implications, Ethics, and Responsibility as Engineers:
 
-\[2\] Schweitzer Engineering Laboratories, "APP 351: SEL-351 protection system." Accessed: Sep. 30, 2026. \[Online\]. Available: [https://selinc.com/selu/courses/app/351/](https://selinc.com/selu/courses/app/351/?utm_source=chatgpt.com)
+[1] International Electrotechnical Commission, "Safety requirements for electrical equipment for measurement, control, and laboratory use—Part 1: General requirements," IEC 61010-1:2010+AMD1:2016. Accessed: Oct. 7, 2026. [Online]. Available: https://webstore.iec.ch/en/publication/59769
+[2] Tennessee Technological University, "Lab safety." Accessed: Oct. 7, 2026. [Online]. Available: https://www.tntech.edu/safety/lab-safety.php
+[3] Occupational Safety and Health Administration, "General," 29 CFR 1910.303. Accessed: Oct. 7, 2026. [Online]. Available: https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.303
+[4] Occupational Safety and Health Administration, "Selection and use of work practices," 29 CFR 1910.333. Accessed: Oct. 7, 2026. [Online]. Available: https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.333
+[5] K. Zimmerman and D. Costello, "Lessons learned from commissioning protective relaying systems," Schweitzer Engineering Laboratories, technical paper. Accessed: Oct. 7, 2026. [Online]. Available: https://cdn.selinc.com/assets/Literature/Publications/Technical%20Papers/6360_LessonsLearned_KZ-DC_20120120_Web.pdf
+[6] National Society of Professional Engineers, "Code of ethics for engineers," rev. Jul. 2019. Accessed: Oct. 7, 2026. [Online]. Available: https://www.nspe.org/sites/default/files/resources/pdfs/Ethics/CodeofEthics/NSPECodeofEthicsforEngineers.pdf
+[7] U.S. Environmental Protection Agency, "Electronics donation and recycling." Accessed: Oct. 7, 2026. [Online]. Available: https://www.epa.gov/recycle/electronics-donation-and-recycling
 
-\[3\] Schweitzer Engineering Laboratories, "TST 103: SEL feeder relay testing." Accessed: Sep. 30, 2026. \[Online\]. Available: [https://selinc.com/selu/courses/tst/103/](https://selinc.com/selu/courses/tst/103/?utm_source=chatgpt.com)
-
-\[4\] Festo, "Numerical distance relay LabVolt Series 3813." Accessed: Sep. 30, 2026. \[Online\]. Available: [https://www.festo.com/in/en/p/numerical-distance-relay-id_PROD_DID_589062](https://www.festo.com/in/en/p/numerical-distance-relay-id_PROD_DID_589062?utm_source=chatgpt.com)
-
-\[5\] Festo, "Numerical directional overcurrent relay LabVolt Series 3812-A." Accessed: Sep. 30, 2026. \[Online\]. Available: [https://www.festo.com/au/en/p/numerical-directional-overcurrent-relay-id_PROD_DID_589110](https://www.festo.com/au/en/p/numerical-directional-overcurrent-relay-id_PROD_DID_589110?utm_source=chatgpt.com)
-
-\[6\] Barrington Consultants, Inc., "CBS." Accessed: Sep. 30, 2026. \[Online\]. Available: [https://www.barringtoninc.com/cbs.htm](https://www.barringtoninc.com/cbs.htm?utm_source=chatgpt.com)
-
-\[7\] PONOVO, "PSS01 circuit breaker simulation device." Accessed: Sep. 30, 2026. \[Online\]. Available: [https://www.ponovo.net/relay-and-protection-testing/optional-accessories/pss01-circuit-breaker-simulator.html](https://www.ponovo.net/relay-and-protection-testing/optional-accessories/pss01-circuit-breaker-simulator.html?utm_source=chatgpt.com)
-
-\[8\] OMICRON electronics, "CMC 500." Accessed: Sep. 30, 2026. \[Online\]. Available: [https://www.omicronenergy.com/en/new-cmc/](https://www.omicronenergy.com/en/new-cmc/?utm_source=chatgpt.com)
-
-\[9\] Eric Foster, "CMC-500 //OMI06920000052," email correspondence to Tennessee Technological University Capstone Team 5, Oct. 2, 2026.
-
-\[10\] A. Saran, P. Kankanala, A. K. Srivastava, and N. N. Schulz, "Designing and testing protective overcurrent relay using real time digital simulation," presented at the Grand Challenges in Modeling & Simulation, Summer Simulation Conference (SummerSim), Edinburgh, Scotland, 2008. Accessed: Sep. 30, 2026. \[Online\]. Available: [https://knowledge.rtds.com/hc/en-us/articles/360048226653-Designing-and-Testing-Protective-Overcurrent-Relay-Using-Real-Time-Digital-Simulation](https://knowledge.rtds.com/hc/en-us/articles/360048226653-Designing-and-Testing-Protective-Overcurrent-Relay-Using-Real-Time-Digital-Simulation?utm_source=chatgpt.com)
-
-**Measures of Success:**
-
-\[1\] Schweitzer Engineering Laboratories, Inc., _SEL-351S Relay Instruction Manual_, Date Code 20190809, 2019.
-
-\[2\] D. E. Wray, "Team 5 Project Summary, Notes, and Tips," email correspondence to Tennessee Technological University Capstone Team 5, Sep. 21, 2026.
-
-\[3\] D. Costello, K. Behrendt, and A. Amberg, "Enabling Instantaneous Tripping During a Hot Line Tag Condition With the SEL-351S, SEL-351R, and SEL-651R Relays," SEL Application Guide AG2009-12, Date Code 20140115, 2014.
-
-**Resources:**
-
-\[1\] Schweitzer Engineering Laboratories, Inc., _SEL-351S Relay Instruction Manual_, Date Code 20190809, 2019.
-
-\[2\] Barrington Instruments, "Model CBS Circuit Breaker Simulator," Barrington Instruments, 2026.
-
-\[3\] D. E. Wray, "Team 5 Project Summary, Notes, and Tips," email correspondence to Tennessee Technological University Capstone Team 5, Sep. 21, 2026.
-
-**Budget:**
-
-\[1\] Barrington Instruments, "Model CBS Circuit Breaker Simulator," Barrington Instruments, 2026.
-
-\[2\] Schweitzer Engineering Laboratories, Inc., _SEL-351S Relay Instruction Manual_, Date Code 20190809, 2019.
-
-**Personnel and Team Skills:** NA
-
-**Timeline:** NA
-
-**Specific Implications:** NA
-
-\[1\] Schweitzer Engineering Laboratories, Inc., _SEL-351S Relay Instruction Manual_, Date Code 20190809, 2019.
-
-\[2\] Schweitzer Engineering Laboratories, Inc., _SEL-351S Protection System_, Data Sheet. Pullman, WA, USA. \[Online\]. Available: [SEL-351S Protection System Data Sheet](https://selinc.com/api/download/5514/?lang=en&utm_source=chatgpt.com). \[Accessed: Oct. 4, 2026\].
-
-\[3\] D. Costello, K. Behrendt, and A. Amberg, "Enabling instantaneous tripping during a Hot Line Tag condition with the SEL-351S, SEL-351R, and SEL-651R relays," Schweitzer Engineering Laboratories, Application Guide AG2009-12, rev. Jan. 15, 2014.
-
-**Broader Implications, Ethics, and Responsibility as Engineers:**
-
-\[1\] International Electrotechnical Commission, "Safety requirements for electrical equipment for measurement, control, and laboratory use—Part 1: General requirements," IEC 61010-1:2010+AMD1:2016. Accessed: Oct. 7, 2026. \[Online\]. Available: [https://webstore.iec.ch/en/publication/59769](https://webstore.iec.ch/en/publication/59769?utm_source=chatgpt.com)
-
-\[2\] Tennessee Technological University, "Lab safety." Accessed: Oct. 7, 2026. \[Online\]. Available: [https://www.tntech.edu/safety/lab-safety.php](https://www.tntech.edu/safety/lab-safety.php?utm_source=chatgpt.com)
-
-\[3\] Occupational Safety and Health Administration, "General," 29 CFR 1910.303. Accessed: Oct. 7, 2026. \[Online\]. Available: [https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.303](https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.303?utm_source=chatgpt.com)
-
-\[4\] Occupational Safety and Health Administration, "Selection and use of work practices," 29 CFR 1910.333. Accessed: Oct. 7, 2026. \[Online\]. Available: [https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.333](https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.333?utm_source=chatgpt.com)
-
-\[5\] K. Zimmerman and D. Costello, "Lessons learned from commissioning protective relaying systems," Schweitzer Engineering Laboratories, technical paper. Accessed: Oct. 7, 2026. \[Online\]. Available: <https://cdn.selinc.com/assets/Literature/Publications/Technical%20Papers/6360_LessonsLearned_KZ-DC_20120120_Web.pdf>
-
-\[6\] National Society of Professional Engineers, "Code of ethics for engineers," rev. Jul. 2019. Accessed: Oct. 7, 2026. \[Online\]. Available: [https://www.nspe.org/sites/default/files/resources/pdfs/Ethics/CodeofEthics/NSPECodeofEthicsforEngineers.pdf](https://www.nspe.org/sites/default/files/resources/pdfs/Ethics/CodeofEthics/NSPECodeofEthicsforEngineers.pdf?utm_source=chatgpt.com)
-
-\[7\] U.S. Environmental Protection Agency, "Electronics donation and recycling." Accessed: Oct. 7, 2026. \[Online\]. Available: <https://www.epa.gov/recycle/electronics-donation-and-recycling>
 
 ## Statement of Contributions
 
