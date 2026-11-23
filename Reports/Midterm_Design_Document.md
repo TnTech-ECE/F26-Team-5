@@ -367,22 +367,26 @@ Electrical power systems are essential for infrastructure in our modern-day soci
 
 The Protective Relay Testing System project aims to address this challenge by developing a cost-effective current injection system capable of simulating electrical fault conditions for an SEL-351S protective relay. The proposed system will utilize an STM32 microcontroller, digital-to-analog converter, signal filtering circuitry, and current amplification stages to generate controlled three-phase AC currents [3], [4]. Through a laptop-based interface, users will be able to configure test parameters and select protection functions to evaluate, including ANSI 50 instantaneous overcurrent, ANSI 51 time overcurrent, ANSI 79 automatic reclosing, and Hot Line Tag (HLT) operation [1]. The system is meant to provide a simplified alternative to commercial relay testing equipment while demonstrating protective relay operation and fault simulation for certain conditions.
 
-The primary stakeholders for this project include electrical engineering students, faculty, and laboratory personnel at Tennessee Technological University who would benefit from an accessible testing system for studying and evaluating protective relay behavior. Our team will be responsible for the design, implementation, and validation of the testing system, ensuring that it can generate the required current waveforms and support the evaluation of selected SEL-351S protection functions. By developing a functional and affordable relay testing platform, the project seeks to enhance hands-on learning opportunities and provide a foundation for future improvements in protective relay testing technology.
+The customer for this project is Tennessee Technological University's Electrical and Computer Engineering Department. Daniel Wray of PowerConnections is the project sponsor and is providing the SEL-351S relay and technical specifications that define the required functionality. Dr. Jinshun Su serves as the faculty advisor, while Dr. Christopher Johnson assigned the revised project scope and provides academic oversight. The primary intended users are electrical engineering students and faculty or instructors. Other stakeholders include laboratory maintenance personnel, future senior design teams that may maintain or expand the system, the university, and relay technicians or industry professionals who may use the equipment for instructional or demonstration purposes.
+
 
 ## Restating the Fully Formulated Problem
 
-The main objective of this project is to develop a current injection test set for the SEL-351S relay. This test set may also be used to fulfill the original project goal of creating a laboratory environment where students can gain hands-on experience working with protective relays. Although commercial relay test sets already exist, they can be extremely expensive and are often more complex to operate than necessary for a university lab course. Therefore, this test set will be designed with safety and ease of use in mind so that it can be operated by novice users with little or no experience working with relays or relay testing equipment.
+The primary objective of this project is to develop a cost-effective current-injection test set for the SEL-351S protective relay. The system is intended to provide a simpler and less expensive alternative to commercial relay-testing equipment while retaining the functions necessary to evaluate selected relay protection and control operations. The design will focus on generating controlled three-phase current waveforms and coordinating current injection with the relay's operating signals. Although the completed equipment may provide a foundation for future educational or training applications, development of a comprehensive training platform is not part of the current project's primary scope.
 
 The test set will be designed to simulate real-world relay operation. The exact test parameters have not yet been established. Daniel Wray, who provided the SEL-351S relay, will supply its configuration settings, which will serve as the basis for the test set's design. Although the specific test requirements are not yet known, the test set is expected to evaluate ANSI functions 50, 51, and 79. It will also test the Hot Line Tag function, which will be programmed into the relay. The maximum peak current for each phase will be limited to 18 A. The provided relay settings will include two operating groups, each of which will determine how the relay responds to fault conditions.
 
-**Constraints and specifications:**
-* The test set shall provide a peak amperage of 18 A. (Customer specification)
-* The test set shall provide three currents each offset with a phase angle of approximately $120^{\circ}$ from each other. (Customer specification)
-* The test set shall not exceed the total budget of $1000 provided by Tennessee Technological University.
-* The test set shall remain within the voltage, current, contact-loading, and thermal ratings specified for the installed SEL-351S relay and all test-system components. (Standard)
-* The test set shall incorporate guarded terminals, appropriate grounding, and overcurrent protection. [1], [2] (Standard)
-* Design and testing shall prevent hazards or disruption to students, faculty, laboratory equipment, and nearby electrical systems. [2], [3] (Ethical concern)
-* The test system shall electrically isolate low-voltage control and measurement electronics from hazardous-voltage circuits. [1] (Standard)
+
+## Constraints and specifications
+
+- The test set shall provide a peak amperage of 18 A. (Customer specification)
+- The test set shall provide three currents each offset with a phase angle of approximately 120^∘from each other. (Customer specification)
+- The test set shall not exceed the total budget of $1000 provided by Tennessee Technological University.
+- The test set shall remain within the voltage, current, contact-loading, and thermal ratings specified for the installed SEL-351S relay and all test-system components. (Standard)
+- The test set shall incorporate guarded terminals, appropriate grounding, and overcurrent protection. All accessible hazardous-voltage connections shall be guarded and required protective earth connections shall pass continuity testing before operation. [1], [2] (Standard)
+- Design and testing shall prevent hazards or disruption to students, faculty, laboratory equipment, and nearby electrical systems. Current injection shall be disabled within 100 ms of a stop command, and an inspection shall be completed before testing again. [2], [3] (Ethical concern)
+- The test system shall electrically isolate low-voltage control and measurement electronics from hazardous-voltage circuits. Isolation components shall have voltage ratings equal to or greater than the maximum voltage across their isolation barriers, verified through manufacturer specifications. [1] (Standard)
+
 
 ## Comparative Analysis of Potential Solutions
 
