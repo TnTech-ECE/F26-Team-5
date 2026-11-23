@@ -420,15 +420,22 @@ The custom linear amplifier is therefore the selected development approach, subj
 
 ## High-Level Solution
 
-The high-level solution is a three-channel secondary current-injection test set designed to evaluate the SEL-351S protective relay's response to simulated fault current conditions. The initial design will generate independently controlled phase currents, $I_A$, $I_B$, and $I_C$, to support testing of nondirectional overcurrent protection and selected operating sequences.
+The high-level solution is a three-channel secondary current-injection system designed to evaluate the SEL-351S protective relay’s response to selected fault-current conditions. The system will generate independently controlled phase currents, (I_A), (I_B), and (I_C), to support testing of nondirectional overcurrent protection and selected operating sequences. Testing will combine programmable current injection, simulated circuit-breaker operation, and analysis of relay-collected data to produce a report or verification spreadsheet.
 
-Two main DC power sources will supply the system. The relay will receive operating power compatible with its installed power supply option, while an AC/DC conversion stage will provide regulated low voltage power for an STM32 microcontroller, digital-to-analog converter (DAC), and associated control circuitry. The current-amplifier stages will require appropriately rated DC supplies to provide the energy delivered to the relay's current inputs.
+Power will be distributed to the relay, control circuitry, and current-amplifier stages according to their electrical requirements. The relay will receive operating power compatible with its installed power-supply option. Regulated low-voltage supplies will power the STM32 microcontroller, digital-to-analog converter (DAC), and associated control circuitry. The amplifier stages are intended to operate from +15 V and −15 V DC rails referenced to a defined 0 V midpoint. The final supply arrangement will be verified for output isolation, current capacity, startup behavior, and compatibility with the amplifier loads.
 
-The STM32 will digitally generate waveform samples based on selected current magnitudes, frequency, phase angles, and test sequences. Synchronized DAC channels will convert these samples into low-power analog reference signals. Each reference will pass through filtering and signal conditioning circuitry before entering a power operational-amplifier stage configured as a controlled current source. Current feedback will allow each amplifier to regulate the injected current according to its reference signal. The three channels will operate together to reproduce balanced and unbalanced current patterns associated with basic faults.
+Before a test begins, the operator will select the relay settings group and test conditions, including current magnitudes, phase angles, and the required operating sequence. The system will establish the simulated breaker state and confirm that the outputs are ready before enabling injection. The STM32 will digitally generate synchronized waveform samples for 60 Hz phase currents. The proposed controller-to-DAC interface is SPI, with logic levels matched to the selected devices; a 3.3 V digital interface is intended where supported. A common update mechanism will coordinate the DAC channels so that their relative phase angles remain controlled.
 
-The initial scope excludes voltage injection and a dedicated neutral-current channel, $I_N$. Testing will therefore focus on functions that can operate using the three phase-current inputs. Ground-overcurrent testing will use residual current calculated from $(I_A+I_B+I_C)$. Testing functions that depend on the separate $I_N$ input would require an additional injection arrangement.
+The DAC will convert the samples into low-power analog reference signals. Each reference will pass through filtering and signal-conditioning circuitry before entering a current-amplifier stage containing three parallel OPA541AP power operational amplifiers. The reference-voltage range and its conversion to commanded current will be defined during detailed design and calibration. Total phase-current feedback will allow each channel to regulate its injected current, while current-sharing circuitry will distribute the load among its three amplifiers. The output targets are 3.33 A RMS per phase during sustained operation and 18 A peak during qualified short-duration tests. These capabilities remain subject to electrical and thermal verification.
 
-Grounding, electrical isolation, output protection, and other safety provisions remain unresolved design tasks. Detailed design will establish the relationships between control grounds, amplifier returns, relay connections, and protective earth, along with appropriate fault protection and output-disabling measures. These provisions must be resolved and verified before the complete test set is energized and connected to the relay.
+The relay will process the injected currents according to its configured protection settings and control logic. Isolated interface circuitry will monitor the assigned TRIP and CLOSE contacts and provide the relay’s 52A breaker-status input. Following a trip command, the test controller will remove the injected fault current and change 52A to indicate an open breaker after the specified simulated opening delay. Following a valid close command, the controller will indicate a closed breaker and apply the current condition required by the test. Permanent-fault tests will repeat this process through the configured reclose attempts until lockout. Tests with reclosing disabled or Hot Line Tag enabled will verify the applicable trip behavior and absence of prohibited closing attempts. The voltage used to operate the relay’s status inputs will match its installed input ratings and will be isolated from the STM32 logic interface.
+
+After each test, relay-recorded measurements and event information will be retrieved through a supported relay communications interface and associated with the applied test conditions. The physical connection, communications protocol, and retrieval method will be selected after confirming the available SEL-351S ports and required data formats. Reporting software will organize the available current measurements, event times, settings-group identification, and control states into a report or spreadsheet. Expected operating times and sequences will be compared with recorded results using the established acceptance criteria. Relay-recorded quantities and externally measured test-system quantities will be identified separately, and missing data will be marked rather than treated as a passing result.
+
+The initial scope excludes voltage injection and a dedicated neutral-current channel, (I_N). Testing will therefore focus on functions that can operate using the three phase-current inputs. Applicable ground-overcurrent tests will use residual current calculated from (I_A+I_B+I_C). Functions that depend on the separate (I_N) input would require an additional injection arrangement.
+
+Grounding, electrical isolation, output protection, thermal protection, and output-disabling provisions remain detailed-design tasks. The design will establish the relationships between control grounds, amplifier returns, relay connections, and protective earth. Protection and test-abort functions will be developed to place the current outputs in a defined safe state following an abnormal condition. These provisions will be verified before full-current testing with the relay.
+
 
 ## Hardware Block Diagram
 <img src= "/Documentation/Inserts/Hardware Block Diagram.png" width="3200" height="900">
@@ -439,13 +446,15 @@ Grounding, electrical isolation, output protection, and other safety provisions 
 ## Atomic Subsystem Specifications
 
 ### 1) Safety, Enclosure, Main Power, and AC-to-DC Conversion
-This subsystem will create the enclosure for all the test system components. It will ensure proper airflow so that high power components can be cooled. This subsystem will provide both AC and DC power as output to other subsystems. Coordination with other subsystems will be necessary to determine what each subsystem will need. This subsystem will also oversee safety to ensure that users will not be exposed to dangerously high currents. Both the AC and DC power systems will use a standard 120 VAC outlet as input.
-* This subsystem shall provide the needed power output to the STM controller and DAC system.
-* This subsystem shall provide the needed power output for the amplification subsystem as well.
-* The total power supplied shall be more than enough for all subsystems to operate at once.
-* This subsystem shall enclose all high voltage and current wires to prevent user injury.
-* This subsystem shall design the enclosure with sufficient airflow to cool components and prevent thermal damage.
-* Both the AC and DC power systems shall use a standard 120 VAC outlet as input.
+This subsystem provides the enclosure, power distribution, and cooling for the relay-testing system. It distributes 120 VAC input power to the required DC supplies and control circuitry. Potential hazards include electrical shock from exposed 120 VAC wiring and relay power connections, high-current outputs exceeding 12 A RMS, and burns or fire caused by hot amplifiers, heat sinks, and power resistors. Student operators and laboratory personnel may be exposed to these hazards during operation, maintenance, or troubleshooting. The design will address these risks through an enclosed and insulated electrical layout, appropriately rated wiring and connectors, output fusing, protective grounding, and forced-air cooling. Heat-producing components will be mounted and ventilated to limit excessive temperatures. Input protection, electrical isolation, and emergency-disconnection provisions must be finalized and verified before operation.
+
+* This subsystem shall provide 120 VAC input power and the required DC power for the controller, DAC, and amplifier subsystems.
+* This subsystem shall enclose energized components and wiring to reduce the risk of electrical shock.
+* This subsystem shall provide fans and ventilation to cool the amplifiers, heat sinks, and power resistors.
+* This subsystem shall use output fuses and appropriately rated wiring and connections.
+* This subsystem shall evaluate input protection, grounding, electrical isolation, and emergency-disconnect requirements before operation.
+* This subsystem shall verify component ratings and thermal performance before energizing the system.
+
 
 ### 2) Signal Filtering and Component Wiring:
 This subsystem will take the output of the DAC as an input and filter it to ensure that a clean and stable sinewave will be sent, as the system output, to the amplification subsystem and on through the amplification to the relay. It will also support the connection and coordination of the control and amplification subsystems. The coordination of the control and amplification systems includes ensuring that the voltage supplied by the control system reaches the amplification subsystem while accounting for any voltage losses in the DAC, wiring, or filtering.
@@ -468,13 +477,16 @@ The DAC will turn the digital waveforms into analog waveforms, which are sent as
 * Users shall be able to select from multiple test faults, which will control the change in amplitude of each waveform individually.
 
 ### 4) Voltage/Current Amplification:
-The voltage waveforms, the microcontroller, and DAC subsystem will have too little power for use of testing the relay, so this subsystem is responsible for amplifying them to the needed power level. Since the waveforms are voltages and not current, this subsystem will also use a 12 high power resistor so that the amplifier output voltage is equal to the output current. The amplifiers will be made using power operational amplifiers. If only one stage of amplification is not enough a low power amplification stage will be added.
+The voltage waveforms, the microcontroller, and DAC subsystem will have too little power for use of testing the relay, so this subsystem is responsible for amplifying them to the needed power level. Since the waveforms are voltages and not current, this subsystem will also use a 0.1Ω resistor so that the amplifier output voltage is converted to the needed output current while minimizing the voltage needed and power dispersed. Since only a 0.1Ω resistor is used the max power will now be image which will have most of the power dispersed in the amplifiers instead of the resistors. The amplifiers will be made using power operational amplifiers. If only one stage of amplification is not enough a low power amplification stage will be added. The OPA541 when used in parallel requires adding current limiting resistors to each amplifier and capacitors to connect the amplifiers. The datasheet for the OPA541 [1] details how the amplifiers can be connected in parallel, this design will be followed to ensure proper use of the amplifiers.
 
 The input to this subsystem will be a sinewave from the filtering subsystem and use DC power from the power subsystem as an input which will be used to power the amplifiers. The subsystem will then send current sinewaves to the relay as the system output.
+
 * This subsystem shall amplify the voltage to the needed level for each fault case.
+* The output voltage shall not exceed the supply voltage.
 * This subsystem shall not exceed the voltage, current, or power rating of any component.
-* This subsystem shall convert the voltage waveforms to current by using a high power resistor.
+* This subsystem shall convert the voltage waveforms to current by using a 0.1Ω resistor.
 * This subsystem shall be able to produce the necessary power to create the needed peak current of 18 A.
+* The amplifiers will be connected using the specifications from the datasheet provided by the manufacture.
 * This subsystem shall maintain the frequency and phase angles from the filtering stage.
 * This subsystem will work with the enclosure subsystem to ensure that no thermal damage is done.
 
@@ -494,53 +506,63 @@ Public health and safety are also a concern because current injection introduces
 
 From an environmental and economic perspective, solid-state electronics and modular components support maintainability and may reduce waste by allowing individual parts to be repaired or replaced. Commercially available components, including the STM32 microcontroller and DAC80504, help the goal of a lower-cost alternative to commercial relay testing equipment for educational laboratories like Tennessee Technological Universities labs.
 
-### Relevant Standards
-These standards provide guidance for protective relay operation, electrical safety, and testing procedures:
-* **IEEE C37.2 (Device Function Numbers):** Standardizes ANSI 50, 51, and 79 terminology for the testing interface and procedures [3].
-* **IEEE C37.90 (Protective Relays):** Provides requirements and test guidance relevant to evaluating protective relay performance and operating responses [3].
-* **IEEE 519 (Harmonic Control):** Provides harmonic-control recommendations for electric power systems and reinforces waveform-quality considerations [3].
-* **IEC 60255 (Protection Equipment):** Provides requirements and test methods for evaluating relay performance under simulated overcurrent conditions [4].
-* **IEC 61010-1 (Laboratory Equipment Safety):** Guides insulation, grounding, enclosures, wiring, and protection against shock and overheating [2].
-* **IEC 61000 (Electromagnetic Compatibility):** Provides standards relevant to interference reduction and reliable electronic system operation [4].
-* **NFPA 70 (National Electrical Code):** Guides applicable AC connections, wiring, grounding, and overcurrent protection [5].
+However, students and professors using the system may face additional maintenance responsibilities, and future students could get equipment with undocumented limitations if not properly documented. To address these concerns, the team will provide operating procedures, maintenance documentation, and clearly identified system limitations.
 
-### Influence on Subsystem Design
+To ensure the accuracy of test results, we will compare measured relay trip times and pass/fail outcomes with OMICRON reference tests at matching conditions. A calibration and verification documentation will be developed to check output current, waveform accuracy, and timing before use. This will help the verify the accuracy of the results before students or staff use the system.
+
+## Relevant Standards
+
+| Standard | Design application | Capstone II verification |
+|---|---|---|
+| IEC 61010-1 | Guides insulation, guarded terminals, protective grounding, and separation of hazardous-voltage circuits from STM32/DAC electronics. | Inspect wiring and guards, check component insulation ratings, and test that the safety ground connection works. |
+| IEEE C37.112 | Provides inverse-time equations for predicting ANSI 51 trip times when the selected SEL-351S curve is applicable. | Calculate expected trip times at selected current multiples and compare them to the SEL-351S event data and OMICRON reference tests. |
+| IEC 60255-151 | Guides evaluation of ANSI 50/51 pickup behavior, overcurrent operating characteristics, and relevant timing performance. | Apply defined test currents and compare measured pickup/trip behavior with relay settings and tolerances. |
+| IEEE C37.2 | Defines device-function terminology for ANSI 50, 51, and 79 used in test descriptions and the user interface. | Check labels, test instructions, and recorded results for consistent function numbers and descriptions. |
+
+## Influence on Subsystem Design
+
 The standards and professional responsibilities guide these subsystem choices:
-* **Power Supply and Regulation:** IEC 61010-1 and applicable NFPA 70 provisions guide safe isolation, grounding, and protection [2], [5]. The supply must provide stable DC power and support amplifier loads without overheating.
-* **Microcontroller and Digital-to-Analog Conversion:** The STM32 and DAC80504 generate three waveforms with controlled timing and phase. IEEE C37.2 guides terminology, while software restricts operation to verified hardware limits.
-* **Signal Filtering:** Filters reduce noise and conversion artifacts while preserving waveform amplitude and phase. IEC 61000 guides interference control.
-* **Current Amplification:** Each phase targets 18 A peak. Current feedback, protective circuitry, and thermal management support safe operation under IEC 61010-1 principles [2].
-* **Protective Relay:** The SEL-351S receives controlled three-phase currents, with ratings, auxiliary power, and settings verified before testing [1]. Relevant IEEE and IEC standards guide evaluation.
+
+- **Power Supply and Regulation:** IEC 61010-1 guides safe isolation, grounding, and protection [2]. The supply must provide stable DC power and support amplifier loads without overheating.
+- **Microcontroller and Digital-to-Analog Conversion:** The STM32 and DAC80504 generate three waveforms with controlled timing and phase. IEEE C37.2 guides the use of standardized device function terminology, while software restricts operation to verified hardware limits [5].
+- **Signal Filtering:** Filters reduce noise and conversion artifacts while preserving waveform amplitude and phase. Filter performance will be verified through oscilloscope measurements to ensure waveform amplitude and phase accuracy are maintained.
+- **Current Amplification:** Each phase targets 18 A peak. Current feedback, protective circuitry, isolation, and thermal management support safe operation under IEC 61010-1 principles [2].
+- **Protective Relay:** The SEL-351S receives controlled three-phase currents, with ratings, auxiliary power, and settings verified before testing [1]. IEC 60255-151 guides the evaluation of overcurrent pickup behavior, operating characteristics, and timing accuracy [4]. Measured relay responses will be compared with applicable tolerances and OMICRON reference results.
+- **Relay Programming and Testing:** IEEE C37.2 guides the use of standardized ANSI device function numbers, while IEEE C37.112 provides inverse-time curve equations for calculating expected ANSI 51 trip times [3], [5]. IEC 60255-151 addresses timing accuracy of overcurrent functions and can be used to establish pass/fail tolerances when evaluating relay operation [1], [4].
 
 ## Resources
 
 ### Existing Resources
+
 The project team has access to several resources through Tennessee Technological University that will support the development and testing of the relay tester. The SEL-351S protective relay is available for configuration and testing, and the team has access to the OMICRON CMC 256-3 relay test set. The OMICRON unit will provide an established testing platform for comparison and validation of the team's prototype.
 
 The team also has access to a computer and the software necessary for project development, programming, and documentation. University laboratory facilities provide access to some instruments, tools, and prototyping supplies. The availability of specific laboratory equipment and materials will be verified as the project progresses. Dedicated power supplies and certain protection and distribution components are not currently available and will need to be acquired.
 
 ### Required Equipment and Materials
+
 The project requires additional electrical and electronic components to construct the prototype. These include power supplies, current amplification components, signal conditioning and filtering components, wiring, connectors, power distribution hardware, and an enclosure. Additional materials will be needed to provide appropriate electrical isolation, grounding, thermal management, and physical protection.
 
 The team will evaluate existing university resources before purchasing additional equipment. Conard Murray may also be able to provide or help obtain certain components and materials through available university resources. Any components obtained through this route will be evaluated for compatibility with the design and accounted for in the project budget as appropriate. Components that cannot be obtained through existing resources will be purchased from approved vendors.
 
 ### Personnel and Technical Resources
+
 The project will use the technical knowledge and experience of all five team members. Each member has assigned responsibilities for a portion of the system, including power distribution and enclosure design, signal filtering and wiring, microcontroller and DAC control, current amplification, and relay configuration and testing. Team members will coordinate during subsystem integration and system validation.
 
 The project will also benefit from the guidance and technical support of the faculty advisor, laboratory personnel, and other university contacts.
 
 ### Financial Resources and Procurement
+
 The project has a maximum materials budget of $1,000. The team will prioritize the use of existing university resources and any suitable components that may be obtained through Conard Murray before purchasing additional materials. Remaining purchases will be made through approved vendors.
 
 The team will track estimated and actual costs throughout the project to ensure that required components are acquired without exceeding the available budget. Material substitutions and design adjustments may be considered when necessary to maintain the project within its financial constraints.
 
 ## Budget
 
-The project has a maximum materials budget of $1,000. The budget is divided according to the five team members' assigned responsibilities to establish the estimated cost of each subsystem and its contribution to the overall project. The baseline design is a three-channel current-injection tester for the SEL-351S protective relay. The optional circuit-breaker simulator is excluded from the baseline budget.
+The project has a maximum materials budget of $1,000. The budget is organized by the five team members' assigned subsystems and is intended to estimate the cost of developing the baseline SEL-351S current-injection test system. The baseline design includes the custom three-phase current source, microcontroller and DAC control, signal filtering, relay interface, and the control functionality necessary to coordinate current injection with relay trip and close signals. The system must also provide the appropriate breaker-status feedback to the SEL-351S, including the 52A input required for automatic-reclosing and Hot Line Tag testing. This functionality will be implemented using a microcontroller-based approach rather than a separate full-size physical circuit-breaker simulator.
 
-The SEL-351S relay, computer, and software are already available to the team and therefore do not require new purchases. Some laboratory instruments and supplies may also be used. All new purchases will be sourced from approved vendors.
+The SEL-351S relay, Omicron CMC 256, computer, and software are already available to the team and therefore do not require new purchases. Some laboratory instruments and supplies may also be used. All new purchases will be sourced from approved vendors.
 
-The following costs are planning estimates rather than verified final quotations. Actual costs may be lower due to supplies possibly available from the university. Additional allowances have been included for wiring, connections, filtering components, cooling, and low-voltage power conversion. These allowances must be refined during detailed design.
+The current estimates are preliminary planning figures. A revised, detailed bill of materials has not yet been completed, and no components have been purchased. The team is currently in the research and design phase of Capstone I. The following costs are planning estimates rather than verified final quotations. Actual costs may be lower due to supplies possibly available from the university. Additional allowances have been included for wiring, connections, filtering components, cooling, and low-voltage power conversion. These allowances must be refined during detailed design.
 
 ### John Pacek - Safety, Enclosure, Main Power, and AC-to-DC Conversion
 This subsystem provides the main power infrastructure, houses the electronics, and establishes the physical and electrical provisions necessary for safe operation. The estimated costs include the amplifier power supplies, high-current distribution materials, enclosure, mounting hardware, protective grounding materials, and an allowance for low-voltage AC-to-DC conversion for the control circuitry.
@@ -639,10 +661,11 @@ The individual subsystem estimates are combined below to establish the current p
 
 The current estimated cost ranges from $999.15 to $1,296.15. The lower estimate is within the $1,000 materials budget by $0.85, while the upper estimate exceeds the budget by $296.15. The team will need to monitor component costs, verify available laboratory materials, and evaluate possible cost reductions to ensure that the completed system remains within the established budget. The estimates do not consistently include all applicable taxes and shipping costs, so the final purchase total may differ.
 
-### Budget Feasibility and Cost Control
+## Budget Feasibility and Cost Control
+
 The revised budget indicates that the baseline design may possibly fit within the $1,000 spending limit under the lower cost assumptions, but it is not yet demonstrated to be feasible across the full estimated range. The lower estimate is within the $1,000 materials budget by $0.85, while the upper estimate exceeds the budget by $296.15. Both figures remain provisional because vendor prices, tax, shipping, component quantities, and the final design have not all been verified.
 
-The team will control costs by confirming available laboratory inventory before purchasing additional materials, obtaining current prices from approved vendors, and verifying component specifications before procurement. The optional circuit-breaker simulator will remain outside the baseline budget. The team will also evaluate suitable component alternatives and enclosure options if verified costs exceed the available funds.
+The team will control costs by confirming available laboratory inventory before purchasing additional materials, obtaining current prices from approved vendors, and verifying component specifications before procurement. The microcontroller-based breaker-status interface is part of the baseline design because the SEL-351S automatic-reclosing and Hot Line Tag tests require appropriate 52A feedback and coordination of current injection with relay trip and close signals. The detailed implementation and component cost of this interface remain to be determined during detailed design. The team will also evaluate suitable component alternatives and enclosure options if verified costs exceed the available funds.
 
 The budget will be refined during detailed design as the power arrangement, amplifier capability, filtering requirements, wiring quantities, thermal management, and safety provisions are validated. Any necessary additions must be included in the consolidated budget before procurement. The final design must meet its required functionality and safety constraints without exceeding the $1,000 spending limit.
 
@@ -651,23 +674,29 @@ The budget will be refined during detailed design as the power arrangement, ampl
 The project team will divide the detailed design into subsystem assignments based on each member's technical background and the functional requirements of the relay test system. John Pacek will serve as the overall project lead, coordinating team activities, monitoring progress, and facilitating communication and integration between subsystem leads. Each member will lead the design of their assigned subsystem, including its specifications, component selection, and interfaces with the rest of the system. All team members will assist across subsystem boundaries when additional expertise or support is needed.
 
 ### John Pacek - Overall Project Lead; Safety, Enclosure, Main Power, and AC-DC Conversion
+
 John will coordinate the overall project, facilitate communication between subsystem leads, and oversee system-level integration and progress toward project objectives. He will lead the design of the safety system, enclosure, main power distribution, and AC-to-DC conversion. These responsibilities include electrical isolation, protection against hazardous voltages and currents, wiring organization, safe equipment access, and supplying the power required by the system's electronic and amplification circuits. His experience with industrial electrical design, relays, CAD, schematics, and bills of materials will support these responsibilities.
 
 ### Maddux Stone - Relay Programming and Testing
+
 Maddux will lead the development of the SEL-351S relay configuration and testing procedures. This work will include establishing the required relay settings and developing test procedures to verify phase and ground/neutral overcurrent protection, automatic reclosing, and Hot Line Tag functionality. He will help define the expected relay responses and operating times for each test case and compare these expectations with measured results.
 
 ### Hadyn Simmons - Signal Filtering and System Wiring
+
 Hadyn will lead the design of the signal-filtering subsystem and coordinate component wiring throughout the project downstream of the main power supply and distribution subsystem. He will design filtering circuitry to reduce unwanted frequency components and improve waveform quality before amplification. He will also organize subsystem interconnections and coordinate with John on power distribution and safety requirements, and with Travis and Alexander on signal connections. His background in power systems, SEL relay experience, and electronic recloser troubleshooting will support these responsibilities.
 
-### Travis Mehaffy - STM Microcontroller Control and DAC; Breaker Simulator (Stretch Goal)
+### Travis Mehaffy - STM Microcontroller Control and DAC, and Breaker-Status Interface
+
 Travis will lead the design and implementation of the STM microcontroller control subsystem and its digital-to-analog converter interface. The microcontroller will generate digital waveform data representing the desired voltage and current test signals. By changing the generated waveform's amplitude, timing, and shape, the system will simulate fault conditions for the SEL-351S relay. The DAC will convert the digital waveform data into an analog signal, which will then pass through the signal-filtering and amplification stages.
 
-As a stretch goal, Travis will also lead the development of a simulated circuit breaker that reproduces breaker opening and closing behavior and provides appropriate breaker-status feedback to the SEL-351S. Work on the breaker simulator will be pursued as time and resources permit after the core project requirements have been addressed.
+Travis will also lead the development of the microcontroller-based breaker-status interface. This functionality will provide the required 52A breaker-status feedback to the SEL-351S and coordinate current injection with relay trip and close signals. It is part of the baseline design and is necessary to support automatic-reclosing and Hot Line Tag testing.
 
 ### Alexander Bussell - Voltage/Current Amplification
+
 Alexander will lead the design of the voltage/current amplification subsystem. Following digital waveform generation, digital-to-analog conversion, and signal filtering, the analog signal will pass through the appropriate amplification stage to reach the voltage or current level required for the selected relay test. The output will then pass through the planned smoothing capacitor stage before being applied to the SEL-351S relay. His experience with AC and three-phase analysis, programming, and industrial automation will support the electrical analysis and implementation of the amplification circuitry. He will coordinate with Travis and Hadyn to ensure that the amplifiers operate correctly with the generated and filtered waveforms.
 
 ### Shared Responsibilities
+
 All team members will participate in system integration, troubleshooting, and final validation. Each subsystem lead will document the subsystem's functional requirements, inputs, outputs, component requirements, and design constraints. The team will review the combined design to ensure that the individual subsystems operate together safely and satisfy the project's core requirements. Subsystem leads will remain responsible for their respective designs while incorporating feedback and assistance from the rest of the team.
 
 ## Timeline
@@ -678,74 +707,97 @@ All team members will participate in system integration, troubleshooting, and fi
 All sources utilized in the conceptual design that are not considered common knowledge must be properly cited. Multiple references should be included.
 
 ### Introduction:
-[1] Schweitzer Engineering Laboratories, "SEL-351S Protection System." [Online]. Available: https://selinc.com/products/351S/
 
-[2] OMICRON electronics, "CMC 356-Universal Relay Test Set and Commissioning Tool." [Online]. Available: https://www.omicronenergy.com/en/products/cmc-356/
+[1] Schweitzer Engineering Laboratories, "SEL-351S Protection System." [Online]. Available: [https://selinc.com/products/351S/](https://selinc.com/products/351S/)
 
-[3] Texas Instruments, "DAC80504-16-Bit, 4-Channel, SPI Voltage-Output DAC." [Online]. Available: https://www.ti.com/product/DAC80504
+[2] OMICRON electronics, "CMC 356-Universal Relay Test Set and Commissioning Tool." [Online]. Available: [https://www.omicronenergy.com/en/products/cmc-356/](https://www.omicronenergy.com/en/products/cmc-356/)
 
-[4] Schweitzer Engineering Laboratories, "SEL-351S Protection System Data Sheet." [Online]. Available: https://selinc.com/api/download/5514/?lang=en
+[3] Texas Instruments, "DAC80504-16-Bit, 4-Channel, SPI Voltage-Output DAC." [Online]. Available: [https://www.ti.com/product/DAC80504](https://www.ti.com/product/DAC80504)
+
+[4] Schweitzer Engineering Laboratories, "SEL-351S Protection System Data Sheet." [Online]. Available: [https://selinc.com/api/download/5514/?lang=en](https://selinc.com/api/download/5514/?lang=en)
 
 ### Restating the Fully Formulated Problem:
-[1] International Electrotechnical Commission, "Safety requirements for electrical equipment for measurement, control, and laboratory use Part 1: General requirements," IEC 61010-1:2010+AMD1:2016. Accessed: Oct. 7, 2026. [Online]. Available: https://webstore.iec.ch/en/publication/59769
 
-[2] Occupational Safety and Health Administration, "General," 29 CFR 1910.303. Accessed: Oct. 7, 2026. [Online]. Available: https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.303
+[1] International Electrotechnical Commission, "Safety requirements for electrical equipment for measurement, control, and laboratory use Part 1: General requirements," IEC 61010-1:2010+AMD1:2016. Accessed: Oct. 7, 2026. [Online]. Available: [https://webstore.iec.ch/en/publication/59769](https://webstore.iec.ch/en/publication/59769)
 
-[3] Tennessee Technological University, "Lab safety." Accessed: Oct. 7, 2026. [Online]. Available: https://www.tntech.edu/safety/lab-safety.php
+[2] Occupational Safety and Health Administration, "General," 29 CFR 1910.303. Accessed: Oct. 7, 2026. [Online]. Available: [https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.303](https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.303)
+
+[3] Tennessee Technological University, "Lab safety." Accessed: Oct. 7, 2026. [Online]. Available: [https://www.tntech.edu/safety/lab-safety.php](https://www.tntech.edu/safety/lab-safety.php)
 
 ### Comparative Analysis of Potential Solutions:
-[1] Texas Instruments, "OPA541AP Power Operational Amplifier," DigiKey. [Online]. Available: https://www.digikey.com/en/products/detail/texas-instruments/OPA541AP/251157. Accessed: Oct. 30, 2026.
+
+[1] OMICRON electronics, CMC 256 Hardware Reference Manual. [Online]. Available: [CMC256.book](https://intellirentco.com/portals/Intellirent/productfiles/CMC%20256%20Manual.pdf)
+
+[2] Texas Instruments, "Application report." SLOA133. [Online]. Available: [Audio Power Amplifier Operation with Transformer Load](https://www.ti.com/lit/an/sloa133/sloa133.pdf)
+
+[3] OMICRON electronics, "CMS 356." [Online]. Available: [CMS 356 - OMICRON electronics GmbH](https://www.omicronenergy.com/products/cms-356)
+
+[4] Texas Instruments, "OPA541AP Power Operational Amplifier," DigiKey. Accessed: Oct. 30, 2026. [Online]. Available: [https://www.digikey.com/en/products/detail/texas-instruments/OPA541AP/251157](https://www.digikey.com/en/products/detail/texas-instruments/OPA541AP/251157).
 
 ### High-Level Solution:
+
 N/A
 
 ### Hardware Block Diagram:
+
 N/A
 
 ### Operational Flow Chart:
+
 N/A
 
 ### Atomic Subsystem Specifications:
-N/A
+
+[1] Texas Instruments, "OPA541AP Power Operational Amplifier," DigiKey. [Online]. Available: [https://www.digikey.com/en/products/detail/texas-instruments/OPA541AP/251157](https://www.digikey.com/en/products/detail/texas-instruments/OPA541AP/251157). Accessed: Oct. 30, 2026.
 
 ### Ethical, Professional, and Standards Considerations:
-[1] Schweitzer Engineering Laboratories, "SEL-351S Protection System." [Online]. Available: https://seline.com/products/351S/
 
-[2] International Electrotechnical Commission, IEC 61010-1: Safety Requirements for Electrical Equipment for Measurement, Control, and Laboratory Use-Part 1: General Requirements. [Online]. Available: https://webstore.iec.ch/
+[1] Schweitzer Engineering Laboratories, "SEL-351S Protection System." [Online]. Available: [https://seline.com/products/351S/](https://seline.com/products/351S/)
 
-[3] Institute of Electrical and Electronics Engineers, IEEE Standards Collection: Power System Protection and Relaying. [Online]. Available: https://standards.ieee.org/
+[2] International Electrotechnical Commission, IEC 61010-1: Safety Requirements for Electrical Equipment for Measurement, Control, and Laboratory Use-Part 1: General Requirements. [Online]. Available: [https://webstore.iec.ch/](https://webstore.iec.ch/)
 
-[4] International Electrotechnical Commission, IEC Standards Collection: Measuring Relays, Protection Equipment, and Electromagnetic Compatibility. [Online]. Available: https://webstore.iec.ch/
+[3] Institute of Electrical and Electronics Engineers, *IEEE Standard for Inverse-Time Characteristics Equations for Overcurrent Relays*, IEEE Std C37.112-2018, 2018. [Online]. Available: [https://standards.ieee.org/](https://standards.ieee.org/)
 
-[5] National Fire Protection Association, NFPA 70: National Electrical Code. [Online]. Available: https://www.nfpa.org/
+[4] International Electrotechnical Commission, Measuring Relays and Protection Equipment—Part 151: Functional Requirements for Over/Under Current Protection, IEC 60255-151:2009. [Online]. Available: [https://webstore.iec.ch/](https://webstore.iec.ch/)
+
+[5] Institute of Electrical and Electronics Engineers, *IEEE Standard for Electrical Power System Device Function Numbers, Acronyms, and Contact Designations*, IEEE Std C37.2-2022, 2022. [Online]. Available: [https://standards.ieee.org/](https://standards.ieee.org/)
 
 ### Resources:
+
 N/A
 
 ### Budget:
-[1] MEAN WELL USA Inc., "RSP-500 Series AC/DC Converters," DigiKey. [Online]. Available: https://www.digikey.com/en/products/base-product/mean-well-usa-inc/1866/RSP-500/461124. Accessed: Oct. 30, 2026.
 
-[2] Hammond Manufacturing, "RMCV9038BK1 Instrument Enclosure," DigiKey. [Online]. Available: https://www.digikey.com/en/products/detail/hammond-manufacturing/RMCV9038BK1/461284. Accessed: Oct. 30, 2026.
+[1] MEAN WELL USA Inc., "RSP-500 Series AC/DC Converters," DigiKey. [Online]. Available: [https://www.digikey.com/en/products/base-product/mean-well-usa-inc/1866/RSP-500/461124](https://www.digikey.com/en/products/base-product/mean-well-usa-inc/1866/RSP-500/461124). Accessed: Oct. 30, 2026.
 
-[3] STMicroelectronics, "NUCLEO-G474RE Development Board," DigiKey. [Online]. Available: https://www.digikey.com/en/products/detail/stmicroelectronics/NUCLEO-G474RE/10231585. Accessed: Oct. 30, 2026.
+[2] Hammond Manufacturing, "RMCV9038BK1 Instrument Enclosure," DigiKey. [Online]. Available: [https://www.digikey.com/en/products/detail/hammond-manufacturing/RMCV9038BK1/461284](https://www.digikey.com/en/products/detail/hammond-manufacturing/RMCV9038BK1/461284). Accessed: Oct. 30, 2026.
 
-[4] Texas Instruments, "DAC80504RTER 16-Bit, Four-Channel Digital-to-Analog Converter." [Online]. Available: https://www.ti.com/product/DAC80504/part-details/DAC80504RTER. Accessed: Oct. 30, 2026.
+[3] STMicroelectronics, "NUCLEO-G474RE Development Board," DigiKey. [Online]. Available: [https://www.digikey.com/en/products/detail/stmicroelectronics/NUCLEO-G474RE/10231585](https://www.digikey.com/en/products/detail/stmicroelectronics/NUCLEO-G474RE/10231585). Accessed: Oct. 30, 2026.
 
-[5] Texas Instruments, "OPA541AP Power Operational Amplifier," DigiKey. [Online]. Available: https://www.digikey.com/en/products/detail/texas-instruments/OPA541AP/251157. Accessed: Oct. 30, 2026.
+[4] Texas Instruments, "DAC80504RTER 16-Bit, Four-Channel Digital-to-Analog Converter." [Online]. Available: [https://www.ti.com/product/DAC80504/part-details/DAC80504RTER](https://www.ti.com/product/DAC80504/part-details/DAC80504RTER). Accessed: Oct. 30, 2026.
 
-[6] Ohmite Manufacturing, "HS150 IR J, 1 $\Omega$, 150 W Chassis Mount Resistor," DigiKey. [Online]. Available: https://www.digikey.com/en/products/detail/ohmite/HS150-1R-J/5307167. Accessed: Oct. 30, 2026.
+[5] Texas Instruments, "OPA541AP Power Operational Amplifier," DigiKey. [Online]. Available: [https://www.digikey.com/en/products/detail/texas-instruments/OPA541AP/251157](https://www.digikey.com/en/products/detail/texas-instruments/OPA541AP/251157). Accessed: Oct. 30, 2026.
+
+[6] Ohmite Manufacturing, "HS150 IR J, 1 image, 150 W Chassis Mount Resistor," DigiKey. [Online]. Available: [https://www.digikey.com/en/products/detail/ohmite/HS150-1R-J/5307167](https://www.digikey.com/en/products/detail/ohmite/HS150-1R-J/5307167). Accessed: Oct. 30, 2026.
 
 ### Division of Labor:
+
 N/A
 
 ### Timeline:
+
 N/A
 
 ## Statement of Contributions
+
 Each team member is required to make a meaningful contribution to the project proposal. In this section, each team member is required to document their individual contributions to the report. One team member may not record another member's contributions on their behalf. By submitting, the team certifies that each member's statement of contributions is accurate.
 
-* **John Pacek** - John Pacek contributed to the conceptual design by developing the project budget and resource plan, evaluating required equipment and materials, and organizing team responsibilities. He also led planning for the power distribution, enclosure, and safety subsystems.
-* **Travis Mehaffy** - Travis Mehaffy contributed to the conceptual design by writing the introduction and Ethical, Professional, and Standards Considerations. Also led planning for STM Microcontroller Control and DAC subsystem implementation within the testing system.
-* **Alexander Bussell** - Alexander Bussell contributed to the conceptual by writing the Restating the Fully Formulated Problem and Atomic Subsystem Specifications sections. Also led planning for the Voltage Amplification subsystem.
-* **Maddux Stone** - Maddux Stone contributed to the conceptual design by completing the Timeline, Hardware Block Diagram, and Operational Flow Chart sections. He also led planning for the Relay Programming and Testing subsystem.
-* **Hadyn Simmons** - Hadyn Simmons contributed to the conceptual design by completing the Comparative Analysis of Potential Solutions and the High-Level Solution sections. He also helped configure the potential circuitry for the amplifiers.
+- **John Pacek** - John Pacek contributed to the conceptual design by developing the project budget and resource plan, evaluating required equipment and materials, and organizing team responsibilities. He also led planning for the power distribution, enclosure, and safety subsystems.
+- **Travis Mehaffy** - Travis Mehaffy contributed to the conceptual design by writing the introduction and Ethical, Professional, and Standards Considerations. Also led planning for STM Microcontroller Control and DAC subsystem implementation within the testing system.
+- **Alexander Bussell** - Alexander Bussell contributed to the conceptual by writing the Restating the Fully Formulated Problem and Atomic Subsystem Specifications sections. Also led planning for the Voltage Amplification subsystem.
+- **Maddux Stone** - Maddux Stone contributed to the conceptual design by completing the Timeline, Hardware Block Diagram, and Operational Flow Chart sections. He also led planning for the Relay Programming and Testing subsystem.
+- **Hadyn Simmons** - Hadyn Simmons contributed to the conceptual design by completing the Comparative Analysis of Potential Solutions and the High-Level Solution sections. He also helped configure the potential circuitry for the amplifiers.
+
+## AI Use Statement:
+
+AI was used for research, document flow, document review, and references formatting.
