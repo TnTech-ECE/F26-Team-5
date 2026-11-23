@@ -9,27 +9,24 @@ Tennessee Technological University
 ## Introduction
 
 
-Electrical power systems are essential for infrastructure in our modern-day society, and the use of protective relays plays a critical role in limiting damage when electrical faults do occur. Reliable protection against these electrical faults requires extensive testing that verifies that the relay operates as it is supposed to based on its settings, logic, and overall role in the power system \[1\].
-
-This project will design and build a fully functional testing kit for undergraduate students in power with the main objective being to help these students develop a certain degree of confidence that the selected SEL-351S legacy protective relay will operate as intended.
-
-Testing shall address phase and ground/neutral overcurrent protection (ANSI 50/51), automatic reclosing (ANSI 79) \[2\]. The team shall also implement and evaluate a Hot Line Tag (HLT) pushbutton feature that enables high-speed tripping and blocks reclosing attempts. The custom testing set shall combine AC current injection, TRIP and CLOSE output monitoring, and simulated 52A breaker-status feedback to reproduce fault trips, reclose attempts, and final lockout.
-
+Electrical power systems are essential for infrastructure in our modern-day society, and the use of protective relays plays a critical role in limiting damage when electrical faults do occur. Reliable protection against these electrical faults requires extensive testing that verifies that the relay operates as it is supposed to based on its settings, logic, and overall role in the power system [1].
+The objective of this project is to design and develop a cost-effective current-injection test system for the SEL-351S protective relay. The system is intended to provide a simpler and less expensive alternative to commercial relay-testing equipment, specifically the OMICRON CMC 256-3. The design will use a custom current-source arrangement based on power operational amplifiers, an STM32 microcontroller, digital-to-analog conversion, and associated signal-conditioning circuitry. The system will support testing of selected SEL-351S protection and control functions, including phase and ground/neutral overcurrent protection, automatic reclosing, and Hot Line Tag operation.
+The project scope was revised by Dr. Christopher Johnson to focus on developing the custom current-injection system within the available project budget. The current project is focused on design, research, and preparation for implementation during Capstone II. A broader educational training platform may be considered as a future expansion if a subsequent senior design team is assigned to develop additional functionality using the equipment produced by this project.
+Testing shall address phase and ground/neutral overcurrent protection (ANSI 50/51), automatic reclosing (ANSI 79) [2]. The team shall also implement and evaluate a Hot Line Tag (HLT) pushbutton feature that enables high-speed tripping and blocks reclosing attempts. The custom testing set shall combine AC current injection, TRIP and CLOSE output monitoring, and simulated 52A breaker-status feedback to reproduce fault trips, reclose attempts, and final lockout.
 The deliverables for this project will include a timing verification spreadsheet, an easy-to-follow operator procedure, and documentation including any testing limitations within the system.
-
-The main stakeholder of the project is Tennessee Technological University's Electrical and Computer Engineering department. Mainly Dr. Jinshun Su, who will be the primary end user of project within the ECE department. Mr. Daniel Wray, Mr. Conard Murray, and Mr. Robert Craven will also serve as resources on providing technical information and background that helps develop our project.
-
+The project customer is Tennessee Technological University's Electrical and Computer Engineering (ECE) Department, which will receive and benefit from the completed test system. The project sponsor is Daniel Wray of PowerConnections, who is providing the SEL-351S relay and the technical specifications and requirements that guide the design. Dr. Jinshun Su will serve as the faculty advisor, providing academic and technical guidance. Dr. Christopher Johnson assigned the revised project scope and will provide course oversight and evaluate the team's progress and deliverables.
+The primary intended users are electrical engineering students and faculty or instructors who will operate or demonstrate the relay-testing system. Indirect stakeholders include laboratory maintenance personnel responsible for maintaining the equipment, future senior design teams that may inherit or expand the system, Tennessee Technological University as the institution providing the laboratory resources, and relay technicians or industry professionals who may use the system for demonstration or instructional purposes.
 This proposal will cover the following:
+•	Formulating the Problem – Establishing the problem and project goals
+•	Background – Reviewing SEL-351S operation, breaker simulation, and commercial relay testing methods.
+•	Design Planning – Describing the approach to solve the problem.
+•	Specifications and Constraints – Describing relay study, test development, hardware design, and system integration.
+•	Project Management – Outlining resources, costs, and the development schedule.
+•	Measures of Success – Defining timing tolerances, operating-sequence checks, and acceptance criteria.
+•	Benefits and Broader Implications – Addressing educational value, safety, sustainability, and ethical responsibility.
+•	References – Listing supporting technical and professional sources.
+•	Team Contributions – Identifying each member's responsibilities.
 
-- Formulating the Problem – Establishing the problem and project goals
-- Background – Reviewing SEL-351S operation, breaker simulation, and commercial relay testing methods.
-- Design Planning – Describing the approach to solve the problem.
-- Specifications and Constraints – Describing relay study, test development, hardware design, and system integration.
-- Project Management – Outlining resources, costs, and the development schedule.
-- Measures of Success – Defining timing tolerances, operating-sequence checks, and acceptance criteria.
-- Benefits and Broader Implications – Addressing educational value, safety, sustainability, and ethical responsibility.
-- References – Listing supporting technical and professional sources.
-- Team Contributions – Identifying each member's responsibilities.
 
 ## Formulating the Problem
 
